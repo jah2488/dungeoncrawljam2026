@@ -1,0 +1,15 @@
+# Godot
+.godot/
+/android/
+/build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Exports
+*.export.cfg
+export_presets.cfg

@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3]
+
+[sub_resource type="Gradient" id="Gradient_dust"]
+colors = PackedColorArray(0.76, 0.7, 0.55, 1, 0.76, 0.7, 0.55, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dust"]
+direction = Vector3(0, -1, 0)
+spread = 45.0
+initial_velocity_min = 20.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, -20, 0)
+scale_min = 1.0
+scale_max = 2.5
+color = Color(0.76, 0.7, 0.55, 1)
+
+[sub_resource type="GDScript" id="GDScript_dust"]
+script/source = "extends GPUParticles2D
+
+
+func _ready() -> void:
+	emitting = true
+	finished.connect(queue_free)
+"
+
+[node name="DustPuff" type="GPUParticles2D"]
+script = SubResource("GDScript_dust")
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_dust")
+lifetime = 0.4
+one_shot = true
+emitting = true
