@@ -5,5 +5,17 @@ extends Control
 
 
 func _ready() -> void:
-	if has_node("/root/Events"):
-		Events.GameStarted.emit()
+    if has_node("/root/Events"):
+        Events.GameStarted.emit()
+    Events.PlayerTurned.connect(
+        func(rot):
+            match int(rad_to_deg(rot)):
+                -90, 90:
+                    %Compass.text = "E"
+                -180, 180:
+                    %Compass.text = "S"
+                -270, 270:
+                    %Compass.text = "W"
+                0, 360, -360:
+                    %Compass.text = "N"
+    )
