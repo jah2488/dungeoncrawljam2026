@@ -1,5 +1,8 @@
 extends Node
 
+## Game Events
+signal PlayerTurned(rot: float)
+
 ## Utility events
 signal MouseCaptured
 signal MouseReleased
@@ -29,11 +32,15 @@ signal SceneChangeCompleted(scene_path: String)
 ## Usage: Events.debug_emit(self, Events.GameStarted)
 ##        Events.debug_emit(self, Events.SceneChangeStarted, ["res://scenes/main.tscn"])
 func debug_emit(sender: Variant, sig: Signal, args: Array = []) -> void:
-	var frame: int = Engine.get_frames_drawn()
-	var sender_name: String = sender.name if sender is Node else str(sender)
-	print("[%d] Event: %s %s (from: %s)" % [frame, sig.get_name(), args, sender_name])
-	match args.size():
-		0: sig.emit()
-		1: sig.emit(args[0])
-		2: sig.emit(args[0], args[1])
-		3: sig.emit(args[0], args[1], args[2])
+    var frame: int = Engine.get_frames_drawn()
+    var sender_name: String = sender.name if sender is Node else str(sender)
+    print("[%d] Event: %s %s (from: %s)" % [frame, sig.get_name(), args, sender_name])
+    match args.size():
+        0:
+            sig.emit()
+        1:
+            sig.emit(args[0])
+        2:
+            sig.emit(args[0], args[1])
+        3:
+            sig.emit(args[0], args[1], args[2])

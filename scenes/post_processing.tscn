@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cx1sig63kjke8"]
+
+[ext_resource type="Script" uid="uid://c8d31737xt8x1" path="res://scripts/scenes/post_processing.gd" id="1"]
+[ext_resource type="Shader" uid="uid://ddujp3mur7ant" path="res://shaders/crt.gdshader" id="2"]
+[ext_resource type="Shader" uid="uid://mlpssn2c8pj2" path="res://shaders/vhs.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("2")
+shader_parameter/warp_amount = 0.01999999955296
+shader_parameter/bevel_corner_radius = 0.06
+shader_parameter/bevel_edge_softness = 0.015
+shader_parameter/scanline_count = 200.0
+shader_parameter/scanline_intensity = 0.25499999430024
+shader_parameter/scanline_sharpness = 2.0000000223518
+shader_parameter/scanline_bright_width = 0.6
+shader_parameter/mask_type = 0
+shader_parameter/mask_intensity = 0.13999999687072
+shader_parameter/mask_pixel_size = 4.0
+shader_parameter/mask_line_count = 355.0
+shader_parameter/mask_dark_level = 0.499999988824
+shader_parameter/brightness = 1.1999999731776
+shader_parameter/contrast = 1.05
+shader_parameter/gamma_in = 2.05000002309686
+shader_parameter/gamma_out = 2.2500000260771
+shader_parameter/saturation = 1.1
+shader_parameter/phosphor_tint = Color(1, 0.9916667, 0.9, 1)
+shader_parameter/bloom_intensity = 0.08
+shader_parameter/bloom_threshold = 0.65
+shader_parameter/bloom_radius = 2.0
+shader_parameter/vignette_intensity = 0.35
+shader_parameter/vignette_radius = 0.97999998182036
+shader_parameter/vignette_softness = 0.5
+shader_parameter/chroma_amount = 0.00450000021375
+shader_parameter/noise_intensity = 0.01499999966472
+shader_parameter/noise_animated = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhs"]
+shader = ExtResource("3")
+shader_parameter/wobble_amount = 0.002
+shader_parameter/wobble_speed = 3.0
+shader_parameter/jitter_amount = 0.001
+shader_parameter/head_switch_amount = 0.06
+shader_parameter/bleed_amount = 0.004
+shader_parameter/bleed_taps = 6
+shader_parameter/saturation = 0.8
+shader_parameter/tape_tint = Color(1, 0.99883336, 0.93, 1)
+shader_parameter/brightness = 1.02
+shader_parameter/contrast = 0.97999998927104
+shader_parameter/noise_intensity = 0.04
+shader_parameter/band_noise_intensity = 0.08
+shader_parameter/band_speed = 1.0000000149012
+shader_parameter/channel_offset = 0.0015999999596
+
+[node name="PostProcessing" type="Node" unique_id=895106315]
+script = ExtResource("1")
+
+[node name="CRTLayer" type="CanvasLayer" parent="." unique_id=628585606]
+layer = 11
+
+[node name="CRT" type="ColorRect" parent="CRTLayer" unique_id=1862866497]
+material = SubResource("ShaderMaterial_crt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VHSLayer" type="CanvasLayer" parent="." unique_id=1959541910]
+layer = 12
+
+[node name="VHS" type="ColorRect" parent="VHSLayer" unique_id=525488514]
+material = SubResource("ShaderMaterial_vhs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
