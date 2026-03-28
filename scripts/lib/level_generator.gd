@@ -4,7 +4,7 @@ extends Node3D
 @export_file("*.csv") var csv_file: String = ""
 @export var cell_size: float = 4.0
 @export var wall_height: float = 4.0
-@export var wall_thickness: float = 0.1
+@export var wall_thickness: float = 0.2
 
 @export_group("Wall Material")
 @export var wall_texture: Texture2D

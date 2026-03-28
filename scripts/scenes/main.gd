@@ -19,3 +19,8 @@ func _ready() -> void:
                 0, 360, -360:
                     %Compass.text = "N"
     )
+
+
+func _physics_process(_delta):
+    %MinimapCamera3D.position.x = %Player.position.x
+    %MinimapCamera3D.position.z = %Player.position.z
