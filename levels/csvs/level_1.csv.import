@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://kg42noepxmo2"
+
+[deps]
+
+files=["res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation"]
+
+source_file="res://levels/csvs/level_1.csv"
+dest_files=["res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

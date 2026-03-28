@@ -124,6 +124,20 @@ shader_parameter/band_noise_intensity = 0.08
 shader_parameter/band_speed = 1.0000000149012
 shader_parameter/channel_offset = 0.0015999999596
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
+albedo_color = Color(0.26921675, 0.66580886, 0.9595025, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_choun"]
+material = SubResource("StandardMaterial3D_choun")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
+bg_color = Color(0.6, 0.6, 0.6, 0.19607843)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
 [node name="Main" type="Control" unique_id=1034031074]
 layout_mode = 3
 anchors_preset = 15
@@ -256,19 +270,20 @@ light_color = Color(0.37162217, 0.3716222, 0.37162215, 1)
 light_energy = 0.504
 shadow_enabled = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=462117304]
+[node name="Player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=462117304]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.111333, 1.1835079, 9.071638)
 script = ExtResource("2_0wfyh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/CharacterBody3D" unique_id=2054457893]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Player" unique_id=2054457893]
 shape = SubResource("CapsuleShape3D_o5qli")
 debug_color = Color(0.7782425, 0.00012822032, 0.6629364, 0.87058824)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/CharacterBody3D" unique_id=1317230641]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1317230641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3695071, 0.06304979)
 fov = 100.0
 
-[node name="CRT" type="ColorRect" parent="SubViewportContainer/SubViewport/CharacterBody3D/Camera3D" unique_id=454918724]
+[node name="CRT" type="ColorRect" parent="SubViewportContainer/SubViewport/Player/Camera3D" unique_id=454918724]
 material = SubResource("ShaderMaterial_crt")
 anchors_preset = 15
 anchor_right = 1.0
@@ -277,7 +292,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="VHS" type="ColorRect" parent="SubViewportContainer/SubViewport/CharacterBody3D/Camera3D" unique_id=1555584557]
+[node name="VHS" type="ColorRect" parent="SubViewportContainer/SubViewport/Player/Camera3D" unique_id=1555584557]
 material = SubResource("ShaderMaterial_choun")
 anchors_preset = 15
 anchor_right = 1.0
@@ -286,11 +301,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RayCast3D" type="RayCast3D" parent="SubViewportContainer/SubViewport/CharacterBody3D" unique_id=701028544]
+[node name="RayCast3D" type="RayCast3D" parent="SubViewportContainer/SubViewport/Player" unique_id=701028544]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, 0)
 target_position = Vector3(0, -4, 0)
 hit_from_inside = true
 debug_shape_thickness = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1536222597]
+layers = 2
+mesh = SubResource("SphereMesh_choun")
 
 [node name="Rat" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=1492822653]
 transform = Transform3D(0.9999946, -0.0032954726, 0.00023775661, 0.0032952165, 0.999994, 0.0010711146, -0.00024127829, -0.0010703267, 0.9999994, 1, 0.9034883, 0)
@@ -359,6 +378,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=980145988]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3" unique_id=1696060022]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer" unique_id=86136759]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer" unique_id=1485982486]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 100)
+render_target_update_mode = 4
+
+[node name="MinimapCamera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=125678457]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1266707013]
 layout_mode = 2
