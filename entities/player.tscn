@@ -53,7 +53,7 @@ shader_parameter/band_noise_intensity = 0.08
 shader_parameter/band_speed = 1.0000000149012
 shader_parameter/channel_offset = 0.0015999999596
 
-[node name="Player" type="CharacterBody3D" unique_id=796200585]
+[node name="Player" type="CharacterBody3D" unique_id=796200585 groups=["player"]]
 script = ExtResource("1_e4p34")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=388712954]

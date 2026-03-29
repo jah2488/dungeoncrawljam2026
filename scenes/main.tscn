@@ -83,7 +83,6 @@ light_energy = 0.504
 shadow_enabled = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1313136798]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,7 +96,7 @@ size_flags_vertical = 3
 alignment = 2
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1686479784]
-custom_minimum_size = Vector2(150, 110)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel" unique_id=1667112704]
@@ -114,19 +113,21 @@ layout_mode = 2
 alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3" unique_id=1696060022]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_choun")
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer" unique_id=86136759]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer" unique_id=1485982486]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(100, 100)
+size = Vector2i(80, 80)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="MinimapCamera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=125678457]
@@ -154,6 +155,7 @@ alignment = 1
 [node name="TurnLeft" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=30671333]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "↪️"
 
 [node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1485679353]
