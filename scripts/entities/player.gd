@@ -1,42 +1,187 @@
 extends CharacterBody3D
 
-const SPEED = 4.0
-const JUMP_VELOCITY = 4.5
+const CELL_SIZE = 4.0
+const ANIM_DURATION = 0.13
 
-var direction: Vector3
-var target_rot: float = 0
-var new_position: Vector3
+# Cardinal direction vectors indexed by facing (0=North/-Z, 1=East/+X, 2=South/+Z, 3=West/-X)
+const CARDINAL_DIRS = [
+    Vector3(0, 0, -1),
+    Vector3(1, 0, 0),
+    Vector3(0, 0, 1),
+    Vector3(-1, 0, 0),
+]
+
+# Maps movement input actions to their relative direction offset from facing
+const MOVE_ACTIONS = {
+    &"move_forward": 0,
+    &"move_back": 2,
+    &"move_left": 3,
+    &"move_right": 1,
+}
+
+var facing: int = 0
+var target_rot: float = 0.0
+var grid_position: Vector3
+var is_moving: bool = false
+var _raycasts: Array[RayCast3D] = []
+var _debug_highlight: MeshInstance3D
+
+var is_interacting_with: Interactable = null
 
 
-func _physics_process(delta: float) -> void:
-    direction = Vector3.ZERO
-    if not is_on_floor():
-        velocity += get_gravity() * delta
+func _ready() -> void:
+    grid_position = _snap_to_grid(position)
+    position = grid_position
+    global_position.y = 1.0
+    _create_raycasts()
+    _create_debug_highlight()
+    _update_interaction_tile()
 
-        # TODO: We need a raycast in each cardinal direction
-        # TODO: We need to prevent 'double dashing' through walls, have a 'is moving' var and check it before allowing another move.
-    $RayCast3D.force_raycast_update()
-    if not $RayCast3D.get_collider():
-        if Input.is_action_just_pressed(&"move_forward"):
-            direction = -transform.basis.z
-    if Input.is_action_just_pressed(&"move_back"):
-        direction = transform.basis.z
-    if Input.is_action_just_pressed(&"move_left"):
-        direction = -transform.basis.x
-    if Input.is_action_just_pressed(&"move_right"):
-        direction = transform.basis.x
+
+func _physics_process(_delta: float) -> void:
+    if is_moving:
+        return
+
+    if Input.is_action_just_pressed(&"interact") and is_interacting_with:
+        is_interacting_with.interact()
+        return
+
     if Input.is_action_just_pressed(&"turn_right"):
-        target_rot = target_rot + deg_to_rad(-90)
-        Events.PlayerTurned.emit(target_rot)
+        facing = (facing + 1) % 4
+        target_rot -= deg_to_rad(90.0)
+        _animate_rotation()
+        return
+
     if Input.is_action_just_pressed(&"turn_left"):
-        target_rot = target_rot + deg_to_rad(90)
-        Events.PlayerTurned.emit(target_rot)
+        facing = (facing + 3) % 4
+        target_rot += deg_to_rad(90.0)
+        _animate_rotation()
+        return
 
-    var t = create_tween()
-    new_position += direction * SPEED
+    var move_dir := Vector3.ZERO
 
-    if rotation.y != target_rot:
-        t.tween_property(self, "rotation:y", target_rot, 0.13).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-    t.tween_property(self, "position", new_position, 0.13).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+    for action in MOVE_ACTIONS:
+        if Input.is_action_just_pressed(action):
+            var relative_dir: int = MOVE_ACTIONS[action]
+            var world_dir_index: int = (facing + relative_dir) % 4
+            if not _is_blocked(relative_dir) and _is_tile_passable(CARDINAL_DIRS[world_dir_index]):
+                move_dir = CARDINAL_DIRS[world_dir_index]
+            break
 
-    move_and_slide()
+    if move_dir != Vector3.ZERO:
+        grid_position = _snap_to_grid(grid_position + move_dir * CELL_SIZE)
+        _animate_movement()
+
+
+func _create_raycasts() -> void:
+    # Forward (-Z), Right (+X), Back (+Z), Left (-X) in local space
+    var directions := [
+        Vector3(0, 0, -CELL_SIZE),
+        Vector3(CELL_SIZE, 0, 0),
+        Vector3(0, 0, CELL_SIZE),
+        Vector3(-CELL_SIZE, 0, 0),
+    ]
+    for dir in directions:
+        var ray := RayCast3D.new()
+        ray.position.y = $Camera3D.position.y
+        ray.target_position = dir
+        ray.exclude_parent = true
+        ray.collision_mask = 1
+        add_child(ray)
+        _raycasts.append(ray)
+
+
+func _is_blocked(relative_dir: int) -> bool:
+    var ray := _raycasts[relative_dir]
+    ray.force_raycast_update()
+    return ray.get_collider() != null
+
+
+func _is_tile_passable(move_dir: Vector3) -> bool:
+    var target_pos = global_position + move_dir * CELL_SIZE
+    var grid_pos = Game.world_to_grid(target_pos)
+    var tile = Game.tile_registry.get(grid_pos)
+    if tile and tile is Interactable:
+        return tile.is_passable
+    return true # no tile = passable
+
+
+func _animate_rotation() -> void:
+    is_moving = true
+    var t := create_tween()
+    t.tween_property(self, "rotation:y", target_rot, ANIM_DURATION).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+    t.tween_callback(
+        func():
+            is_moving = false
+            _update_interaction_tile()
+    )
+    Events.PlayerTurned.emit(target_rot)
+
+
+func _animate_movement() -> void:
+    is_moving = true
+    var t := create_tween()
+    t.tween_property(self, "position", grid_position, ANIM_DURATION).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+    t.tween_callback(
+        func():
+            position = grid_position
+            is_moving = false
+            var stepped_tile = Game.tile_registry.get(Game.world_to_grid(global_position))
+            if stepped_tile:
+                stepped_tile.on_stepped_on()
+            _update_interaction_tile()
+    )
+
+
+func _update_interaction_tile() -> void:
+    var facing_pos = global_position + CARDINAL_DIRS[facing] * CELL_SIZE
+    var grid_pos = Game.world_to_grid(facing_pos)
+    var new_tile = Game.tile_registry.get(grid_pos) as Interactable
+    if new_tile == is_interacting_with:
+        return
+
+    if is_interacting_with:
+        is_interacting_with.on_unfocused()
+
+    is_interacting_with = new_tile
+
+    if is_interacting_with:
+        is_interacting_with.on_focused()
+
+
+func _process(_delta: float) -> void:
+    _update_debug_highlight()
+
+
+func _create_debug_highlight() -> void:
+    _debug_highlight = MeshInstance3D.new()
+    var box := BoxMesh.new()
+    box.size = Vector3(CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    _debug_highlight.mesh = box
+
+    var mat := StandardMaterial3D.new()
+    mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+    mat.albedo_color = Color(0.0, 0.8, 0.7, 0.3)
+    mat.no_depth_test = true
+    mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+    _debug_highlight.material_override = mat
+
+    _debug_highlight.top_level = true
+    get_parent().add_child.call_deferred(_debug_highlight)
+
+
+func _update_debug_highlight() -> void:
+    if not is_instance_valid(_debug_highlight) or not _debug_highlight.is_inside_tree():
+        return
+    var facing_offset: Vector3 = CARDINAL_DIRS[facing] * CELL_SIZE
+    var active_grid: Vector2i = Game.world_to_grid(global_position + facing_offset)
+    var active_world: Vector3 = Game.grid_to_world(active_grid)
+    _debug_highlight.global_position = Vector3(active_world.x, 2.0, active_world.z)
+
+
+func _snap_to_grid(pos: Vector3) -> Vector3:
+    return Vector3(
+        roundf(pos.x / CELL_SIZE) * CELL_SIZE,
+        pos.y,
+        roundf(pos.z / CELL_SIZE) * CELL_SIZE,
+    )

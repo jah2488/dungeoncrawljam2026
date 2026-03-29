@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://rp01p22xyd63"]
+
+[ext_resource type="Texture2D" uid="uid://ckucyq8aw8jhj" path="res://textures/unknown.png" id="1_rlj1g"]
+[ext_resource type="Script" uid="uid://b72kvsf2b7u6g" path="res://entities/unknown_tile.gd" id="1_sqspl"]
+
+[node name="Unknown" type="Node3D" unique_id=689960088]
+script = ExtResource("1_sqspl")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=99698763]
+pixel_size = 0.05
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_rlj1g")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=678817964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19556078, 0.025884807)
+billboard = 1
+text = "Unknown
+"
+font_size = 48
+uppercase = true

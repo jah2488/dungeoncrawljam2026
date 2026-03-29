@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://dhrfvk821nsrr"]
 
 [ext_resource type="Script" uid="uid://dgc0gpooxramh" path="res://scripts/scenes/main.gd" id="1"]
-[ext_resource type="Script" uid="uid://cntoq4l8nnvqp" path="res://scripts/entities/player.gd" id="2_0wfyh"]
 [ext_resource type="Texture2D" uid="uid://bxush7c3uu67l" path="res://textures/pink_walls.png" id="2_jyhfs"]
-[ext_resource type="Texture2D" uid="uid://5d0w0eurucq5" path="res://textures/cheese.png" id="2_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://cr6mgy6x4j6fa" path="res://textures/ratty.png" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://c7mi8rdbydhnk" path="res://textures/pink_walls-normal.png" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://c52avx43almfe" path="res://scripts/lib/level_generator.gd" id="5_choun"]
-[ext_resource type="Shader" uid="uid://mlpssn2c8pj2" path="res://shaders/vhs.gdshader" id="6_85g3d"]
-[ext_resource type="Shader" uid="uid://ddujp3mur7ant" path="res://shaders/crt.gdshader" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://c8ubs27hihx60" path="res://entities/text_tile.tscn" id="6_85g3d"]
+[ext_resource type="PackedScene" uid="uid://rp01p22xyd63" path="res://entities/unknown-tile.tscn" id="6_choun"]
+[ext_resource type="PackedScene" uid="uid://cq5rpnpyyqw87" path="res://entities/player.tscn" id="6_tipki"]
 [ext_resource type="AudioStream" uid="uid://fxul7gablm1y" path="res://audio/music/RatDungeon.wav" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
@@ -33,113 +31,6 @@ adjustment_enabled = true
 adjustment_brightness = 0.96
 adjustment_contrast = 1.035
 adjustment_saturation = 0.99
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0wfyh"]
-data = PackedVector3Array(-10, 0.099999994, 10, 10, 0.099999994, 10, -10, -0.099999994, 10, 10, 0.099999994, 10, 10, -0.099999994, 10, -10, -0.099999994, 10, 10, 0.099999994, -10, -10, 0.099999994, -10, 10, -0.099999994, -10, -10, 0.099999994, -10, -10, -0.099999994, -10, 10, -0.099999994, -10, 10, 0.099999994, 10, 10, 0.099999994, -10, 10, -0.099999994, 10, 10, 0.099999994, -10, 10, -0.099999994, -10, 10, -0.099999994, 10, -10, 0.099999994, -10, -10, 0.099999994, 10, -10, -0.099999994, -10, -10, 0.099999994, 10, -10, -0.099999994, 10, -10, -0.099999994, -10, 10, 0.099999994, 10, -10, 0.099999994, 10, 10, 0.099999994, -10, -10, 0.099999994, 10, -10, 0.099999994, -10, 10, 0.099999994, -10, -10, -0.099999994, 10, 10, -0.099999994, 10, -10, -0.099999994, -10, 10, -0.099999994, 10, 10, -0.099999994, -10, -10, -0.099999994, -10)
-backface_collision = true
-
-[sub_resource type="BoxMesh" id="ground_mesh"]
-size = Vector3(20, 0.2, 20)
-
-[sub_resource type="StandardMaterial3D" id="ground_mat"]
-albedo_color = Color(0.38893905, 0.19556537, 0.020045158, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_choun"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
-albedo_texture = ExtResource("2_jyhfs")
-normal_enabled = true
-normal_scale = 2.0
-normal_texture = ExtResource("3_tefeu")
-uv1_scale = Vector3(10, 10, 10)
-texture_filter = 0
-
-[sub_resource type="BoxMesh" id="BoxMesh_tefeu"]
-size = Vector3(20, 0.2, 20)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0wfyh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
-albedo_texture = ExtResource("2_jyhfs")
-uv1_scale = Vector3(10, 10, 10)
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sugp2"]
-albedo_color = Color(0.68187135, 0.0001930043, 0.63247013, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tipki"]
-albedo_texture = ExtResource("2_jyhfs")
-uv1_scale = Vector3(10, 10, 10)
-texture_filter = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85g3d"]
-albedo_texture = ExtResource("2_jyhfs")
-uv1_scale = Vector3(10, 10, 10)
-texture_filter = 0
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
-shader = ExtResource("6_tipki")
-shader_parameter/warp_amount = 0.01999999955296
-shader_parameter/bevel_corner_radius = 0.06
-shader_parameter/bevel_edge_softness = 0.015
-shader_parameter/scanline_count = 200.0
-shader_parameter/scanline_intensity = 0.25499999430024
-shader_parameter/scanline_sharpness = 2.0000000223518
-shader_parameter/scanline_bright_width = 0.6
-shader_parameter/mask_type = 0
-shader_parameter/mask_intensity = 0.13999999687072
-shader_parameter/mask_pixel_size = 4.0
-shader_parameter/mask_line_count = 355.0
-shader_parameter/mask_dark_level = 0.499999988824
-shader_parameter/brightness = 1.1999999731776
-shader_parameter/contrast = 1.05
-shader_parameter/gamma_in = 2.05000002309686
-shader_parameter/gamma_out = 2.2500000260771
-shader_parameter/saturation = 1.1
-shader_parameter/phosphor_tint = Color(1, 0.9916667, 0.9, 1)
-shader_parameter/bloom_intensity = 0.08
-shader_parameter/bloom_threshold = 0.65
-shader_parameter/bloom_radius = 2.0
-shader_parameter/vignette_intensity = 0.35
-shader_parameter/vignette_radius = 0.97999998182036
-shader_parameter/vignette_softness = 0.5
-shader_parameter/chroma_amount = 0.00450000021375
-shader_parameter/noise_intensity = 0.01499999966472
-shader_parameter/noise_animated = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
-shader = ExtResource("6_85g3d")
-shader_parameter/wobble_amount = 0.002
-shader_parameter/wobble_speed = 3.0
-shader_parameter/jitter_amount = 0.001
-shader_parameter/head_switch_amount = 0.06
-shader_parameter/bleed_amount = 0.004
-shader_parameter/bleed_taps = 6
-shader_parameter/saturation = 0.8
-shader_parameter/tape_tint = Color(1, 0.99883336, 0.93, 1)
-shader_parameter/brightness = 1.02
-shader_parameter/contrast = 0.97999998927104
-shader_parameter/noise_intensity = 0.04
-shader_parameter/band_noise_intensity = 0.08
-shader_parameter/band_speed = 1.0000000149012
-shader_parameter/channel_offset = 0.0015999999596
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_choun"]
-albedo_color = Color(0.26921675, 0.66580886, 0.9595025, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_choun"]
-material = SubResource("StandardMaterial3D_choun")
-is_hemisphere = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_choun"]
-bg_color = Color(0.6, 0.6, 0.6, 0.19607843)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Control" unique_id=1034031074]
 layout_mode = 3
@@ -171,102 +62,19 @@ render_target_update_mode = 4
 environment = SubResource("env")
 
 [node name="World" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=875139509]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
-
-[node name="Floor" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=732941109]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Floor" unique_id=2025825762]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Floor" unique_id=149767464]
-mesh = SubResource("ground_mesh")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ground_mat")
-
-[node name="Ceiling" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=199720067]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 7, 1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Ceiling" unique_id=935386658]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="CeilingMesh" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Ceiling" unique_id=643087686]
-transform = Transform3D(-50, 4.371139e-06, 0, -4.371139e-06, -50, 0, 0, 0, 50, 34, 0, 0)
-mesh = SubResource("PlaneMesh_choun")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ground_mat")
-
-[node name="Wall" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=312182269]
-transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, -6.0797644, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Wall" unique_id=938378729]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Wall" unique_id=1390000411]
-material_override = SubResource("StandardMaterial3D_tbgi4")
-mesh = SubResource("BoxMesh_tefeu")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_0wfyh")
-
-[node name="Wall2" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=358922930]
-transform = Transform3D(-4.371139e-08, -1, 0, -4.371139e-08, 1.9106855e-15, -1, 1, -4.371139e-08, -4.371139e-08, 1.9202356, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Wall2" unique_id=1720928761]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Wall2" unique_id=587380788]
-material_override = SubResource("StandardMaterial3D_o6xl0")
-mesh = SubResource("ground_mesh")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
-
-[node name="Wall3" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=206795535]
-transform = Transform3D(-1, 8.742278e-08, 4.371139e-08, -4.371139e-08, 1.9106855e-15, -1, -8.742278e-08, -1, 1.9106855e-15, 3.9202356, 0, -10)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Wall3" unique_id=41304164]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Wall3" unique_id=658580369]
-material_override = SubResource("StandardMaterial3D_tipki")
-mesh = SubResource("ground_mesh")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
-
-[node name="Wall4" type="StaticBody3D" parent="SubViewportContainer/SubViewport/World" unique_id=1160814907]
-transform = Transform3D(1, 0, -4.371139e-08, -4.371139e-08, 1.9106855e-15, -1, 0, 1, 1.9106855e-15, 7.9202356, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/World/Wall4" unique_id=1680174402]
-shape = SubResource("ConcavePolygonShape3D_0wfyh")
-
-[node name="Ground" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/World/Wall4" unique_id=1241475440]
-material_override = SubResource("StandardMaterial3D_85g3d")
-mesh = SubResource("ground_mesh")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_sugp2")
-
-[node name="Cheese" type="Sprite3D" parent="SubViewportContainer/SubViewport/World" unique_id=1714174022]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.90000004, -7)
-pixel_size = 0.1
-billboard = 1
-double_sided = false
-texture_filter = 0
-texture = ExtResource("2_tbgi4")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/World" unique_id=1174300459]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -5)
-light_color = Color(0.78134, 0.41244048, 0.023642788, 1)
-light_energy = 7.642
-shadow_enabled = true
-omni_range = 25.686
-omni_attenuation = 1.17
 
 [node name="LevelGenerator" type="Node3D" parent="SubViewportContainer/SubViewport/World" unique_id=1155802989]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 2)
 script = ExtResource("5_choun")
 csv_file = "uid://bsfjfxxsxvkoc"
 wall_texture = ExtResource("2_jyhfs")
 wall_normal_texture = ExtResource("3_tefeu")
-wall_uv_scale = Vector3(10, 10, 10)
-floor_texture = ExtResource("2_tbgi4")
+wall_uv_scale = Vector3(4, 4, 4)
+floor_color = Color(0.86407286, 0.4753883, 0.13117146, 1)
+tile_scenes = Dictionary[String, PackedScene]({
+"@": ExtResource("6_tipki"),
+"T": ExtResource("6_85g3d")
+})
+unknown_tile_scene = ExtResource("6_choun")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=199795231]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
@@ -274,91 +82,8 @@ light_color = Color(0.37162217, 0.3716222, 0.37162215, 1)
 light_energy = 0.504
 shadow_enabled = true
 
-[node name="Player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=462117304]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.111333, 1.1835079, 9.071638)
-script = ExtResource("2_0wfyh")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Player" unique_id=2054457893]
-shape = SubResource("CapsuleShape3D_o5qli")
-debug_color = Color(0.7782425, 0.00012822032, 0.6629364, 0.87058824)
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1317230641]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3695071, 0.06304979)
-fov = 100.0
-
-[node name="CRT" type="ColorRect" parent="SubViewportContainer/SubViewport/Player/Camera3D" unique_id=454918724]
-material = SubResource("ShaderMaterial_crt")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="VHS" type="ColorRect" parent="SubViewportContainer/SubViewport/Player/Camera3D" unique_id=1555584557]
-material = SubResource("ShaderMaterial_choun")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="RayCast3D" type="RayCast3D" parent="SubViewportContainer/SubViewport/Player" unique_id=701028544]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 1, 0)
-target_position = Vector3(0, -4, 0)
-hit_from_inside = true
-debug_shape_thickness = 5
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1536222597]
-transform = Transform3D(-5.2125306e-16, -1.1924881e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, 1.1924881e-08, 0, 0, 0)
-layers = 2
-mesh = SubResource("SphereMesh_choun")
-
-[node name="Rat" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=1492822653]
-transform = Transform3D(0.9999946, -0.0032954726, 0.00023775661, 0.0032952165, 0.999994, 0.0010711146, -0.00024127829, -0.0010703267, 0.9999994, 1, 0.9034883, 0)
-pixel_size = 0.1
-billboard = 1
-double_sided = false
-alpha_cut = 3
-alpha_antialiasing_mode = 2
-texture_filter = 0
-texture = ExtResource("3_sugp2")
-
-[node name="Rat2" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=1737784972]
-transform = Transform3D(0.9999946, -0.0032954726, 0.00023775661, 0.0032952165, 0.999994, 0.0010711146, -0.00024127829, -0.0010703267, 0.9999994, 0, 0.9034883, 0)
-pixel_size = 0.1
-billboard = 1
-double_sided = false
-alpha_cut = 3
-alpha_antialiasing_mode = 2
-texture_filter = 0
-texture = ExtResource("3_sugp2")
-
-[node name="Rat3" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=1923356571]
-transform = Transform3D(0.9999946, -0.0032954726, 0.00023775661, 0.0032952165, 0.999994, 0.0010711146, -0.00024127829, -0.0010703267, 0.9999994, -1, 0.9034883, 1)
-modulate = Color(0.5445585, 0.64752954, 0.7689483, 1)
-pixel_size = 0.1
-billboard = 1
-double_sided = false
-alpha_cut = 3
-alpha_antialiasing_mode = 2
-texture_filter = 0
-texture = ExtResource("3_sugp2")
-
-[node name="Rat4" type="Sprite3D" parent="SubViewportContainer/SubViewport" unique_id=1254516628]
-transform = Transform3D(0.9999946, -0.0032954726, 0.00023775661, 0.0032952165, 0.999994, 0.0010711146, -0.00024127829, -0.0010703267, 0.9999994, 0.5, 0.9034883, 1.6)
-modulate = Color(0.65699166, 1.2995303e-06, 0.37135196, 1)
-pixel_size = 0.1
-billboard = 1
-double_sided = false
-alpha_cut = 3
-alpha_antialiasing_mode = 2
-texture_filter = 0
-texture = ExtResource("3_sugp2")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1313136798]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
