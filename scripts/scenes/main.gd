@@ -22,5 +22,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
-    %MinimapCamera3D.position.x = %Player.position.x
-    %MinimapCamera3D.position.z = %Player.position.z
+    var player = get_tree().get_nodes_in_group("player")[0]
+    if player:
+        %MinimapCamera3D.position.x = player.position.x
+        %MinimapCamera3D.position.z = player.position.z

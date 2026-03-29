@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c8ubs27hihx60"]
+
+[ext_resource type="Script" uid="uid://c0k27t721yldv" path="res://scripts/entities/text_tile.gd" id="1_dgo51"]
+
+[node name="TextTile" type="Node3D" unique_id=1449066821]
+script = ExtResource("1_dgo51")

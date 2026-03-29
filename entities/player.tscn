@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cq5rpnpyyqw87"]
+
+[ext_resource type="Script" uid="uid://cntoq4l8nnvqp" path="res://scripts/entities/player.gd" id="1_e4p34"]
+[ext_resource type="Shader" uid="uid://ddujp3mur7ant" path="res://shaders/crt.gdshader" id="2_rfe5m"]
+[ext_resource type="Shader" uid="uid://mlpssn2c8pj2" path="res://shaders/vhs.gdshader" id="3_qly61"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crt"]
+shader = ExtResource("2_rfe5m")
+shader_parameter/warp_amount = 0.01999999955296
+shader_parameter/bevel_corner_radius = 0.06
+shader_parameter/bevel_edge_softness = 0.015
+shader_parameter/scanline_count = 200.0
+shader_parameter/scanline_intensity = 0.25499999430024
+shader_parameter/scanline_sharpness = 2.0000000223518
+shader_parameter/scanline_bright_width = 0.6
+shader_parameter/mask_type = 0
+shader_parameter/mask_intensity = 0.13999999687072
+shader_parameter/mask_pixel_size = 4.0
+shader_parameter/mask_line_count = 355.0
+shader_parameter/mask_dark_level = 0.499999988824
+shader_parameter/brightness = 1.1999999731776
+shader_parameter/contrast = 1.05
+shader_parameter/gamma_in = 2.05000002309686
+shader_parameter/gamma_out = 2.2500000260771
+shader_parameter/saturation = 1.1
+shader_parameter/phosphor_tint = Color(1, 0.9916667, 0.9, 1)
+shader_parameter/bloom_intensity = 0.08
+shader_parameter/bloom_threshold = 0.65
+shader_parameter/bloom_radius = 2.0
+shader_parameter/vignette_intensity = 0.35
+shader_parameter/vignette_radius = 0.97999998182036
+shader_parameter/vignette_softness = 0.5
+shader_parameter/chroma_amount = 0.00450000021375
+shader_parameter/noise_intensity = 0.01499999966472
+shader_parameter/noise_animated = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("3_qly61")
+shader_parameter/wobble_amount = 0.002
+shader_parameter/wobble_speed = 3.0
+shader_parameter/jitter_amount = 0.001
+shader_parameter/head_switch_amount = 0.06
+shader_parameter/bleed_amount = 0.004
+shader_parameter/bleed_taps = 6
+shader_parameter/saturation = 0.8
+shader_parameter/tape_tint = Color(1, 0.99883336, 0.93, 1)
+shader_parameter/brightness = 1.02
+shader_parameter/contrast = 0.97999998927104
+shader_parameter/noise_intensity = 0.04
+shader_parameter/band_noise_intensity = 0.08
+shader_parameter/band_speed = 1.0000000149012
+shader_parameter/channel_offset = 0.0015999999596
+
+[node name="Player" type="CharacterBody3D" unique_id=796200585 groups=["player"]]
+script = ExtResource("1_e4p34")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=388712954]
+shape = SubResource("CapsuleShape3D_o5qli")
+debug_color = Color(0.7782425, 0.00012822032, 0.6629364, 0.87058824)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=918617550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3695071, 0.06304979)
+fov = 100.0
+
+[node name="CRT" type="ColorRect" parent="Camera3D" unique_id=823279438]
+material = SubResource("ShaderMaterial_crt")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VHS" type="ColorRect" parent="Camera3D" unique_id=1393263246]
+material = SubResource("ShaderMaterial_choun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
