@@ -44,8 +44,9 @@ func _ready() -> void:
         game_state = GameState.PLAYING
 
 
-func _input(_event: InputEvent) -> void:if not Input.is_action_just_pressed(&"pause"):
-    return
+func _input(_event: InputEvent) -> void:
+    if not Input.is_action_just_pressed(&"pause"):
+        return
 
     if game_state == GameState.PLAYING:
         pause()
