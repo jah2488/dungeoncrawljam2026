@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://bkiussea7bxgd"
+uid="uid://db5n0ooqlh4j"
 
 [deps]
 
-files=["res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation"]
+files=["res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation"]
 
 source_file="res://levels/csvs/level_1.csv"
-dest_files=["res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation", "res://levels/csvs/level_1.0.translation"]
+dest_files=["res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation", "res://levels/csvs/level_1.1.translation"]
 
 [params]
 

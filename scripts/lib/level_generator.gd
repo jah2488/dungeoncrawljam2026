@@ -6,8 +6,8 @@ extends Node3D
 @export var cell_size: float = 4.0
 @export var wall_height: float = 4.0
 @export var wall_thickness: float = 0.1
-@export var wall_character: String = "0"
-@export var ground_character: String = "1"
+@export var wall_character: String = "1"
+@export var ground_character: String = "0"
 
 @export_group("Wall Material")
 @export var wall_texture: Texture2D
