@@ -14,9 +14,9 @@ const CARDINAL_DIRS = [
 # Maps movement input actions to their relative direction offset from facing
 const MOVE_ACTIONS = {
     &"move_forward": 0,
+    &"move_right": 1,
     &"move_back": 2,
     &"move_left": 3,
-    &"move_right": 1,
 }
 
 var facing: int = 0
@@ -28,14 +28,30 @@ var _debug_highlight: MeshInstance3D
 
 var is_interacting_with: Interactable = null
 
+# UI movement button signal data
+var _do_turn_left: bool = false
+var _do_turn_right: bool = false
+var _do_move_dir: int = -1
+
 
 func _ready() -> void:
+    global_position.y = 0.8
     grid_position = _snap_to_grid(position)
     position = grid_position
-    global_position.y = 1.0
     _create_raycasts()
     _create_debug_highlight()
     _update_interaction_tile()
+    Events.PlayerTurned.connect(
+        func(rot: float) -> void:
+            if rot > 0:
+                _do_turn_left = true
+            else:
+                _do_turn_right = true
+    )
+    Events.PlayerMoved.connect(
+        func(dir: int) -> void:
+            _do_move_dir = dir
+    )
 
 
 func _physics_process(_delta: float) -> void:
@@ -46,13 +62,15 @@ func _physics_process(_delta: float) -> void:
         is_interacting_with.interact()
         return
 
-    if Input.is_action_just_pressed(&"turn_right"):
+    if Input.is_action_just_pressed(&"turn_right") or _do_turn_right:
+        _do_turn_right = false
         facing = (facing + 1) % 4
         target_rot -= deg_to_rad(90.0)
         _animate_rotation()
         return
 
-    if Input.is_action_just_pressed(&"turn_left"):
+    if Input.is_action_just_pressed(&"turn_left") or _do_turn_left:
+        _do_turn_left = false
         facing = (facing + 3) % 4
         target_rot += deg_to_rad(90.0)
         _animate_rotation()
@@ -61,8 +79,9 @@ func _physics_process(_delta: float) -> void:
     var move_dir := Vector3.ZERO
 
     for action in MOVE_ACTIONS:
-        if Input.is_action_just_pressed(action):
-            var relative_dir: int = MOVE_ACTIONS[action]
+        var relative_dir: int = MOVE_ACTIONS[action]
+        if Input.is_action_just_pressed(action) or _do_move_dir == relative_dir:
+            _do_move_dir = -1
             var world_dir_index: int = (facing + relative_dir) % 4
             if not _is_blocked(relative_dir) and _is_tile_passable(CARDINAL_DIRS[world_dir_index]):
                 move_dir = CARDINAL_DIRS[world_dir_index]
@@ -115,7 +134,7 @@ func _animate_rotation() -> void:
             is_moving = false
             _update_interaction_tile()
     )
-    Events.PlayerTurned.emit(target_rot)
+    Events.PlayerLocation.emit(Game.world_to_grid(global_position), target_rot)
 
 
 func _animate_movement() -> void:
@@ -131,6 +150,7 @@ func _animate_movement() -> void:
                 stepped_tile.on_stepped_on()
             _update_interaction_tile()
     )
+    Events.PlayerLocation.emit(Game.world_to_grid(global_position), target_rot)
 
 
 func _update_interaction_tile() -> void:
@@ -147,6 +167,7 @@ func _update_interaction_tile() -> void:
 
     if is_interacting_with:
         is_interacting_with.on_focused()
+        is_interacting_with.get_options()
 
 
 func _process(_delta: float) -> void:
