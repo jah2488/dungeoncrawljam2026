@@ -33,7 +33,6 @@ func get_options() -> Array[Dictionary]:
 func on_stepped_on() -> void:
     print(print_name + " (stepped on) ")
     if armed:
-        # TODO: Animate trap appearing
         Events.PlayerTriggerTrap.emit(damage, self)
 
 
@@ -62,8 +61,3 @@ func interact(choice_id: String = "") -> void:
                 print("Its a trap! But its disarmed")
         _:
             print("you cannot perform this action on a trap")
-
-
-func _process(_delta: float) -> void:
-    #TODO: Animate trap when 'triggered' is true
-    pass
