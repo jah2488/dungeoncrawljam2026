@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c8ubs27hihx60" path="res://entities/text_tile.tscn" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://rp01p22xyd63" path="res://entities/unknown-tile.tscn" id="6_choun"]
 [ext_resource type="PackedScene" uid="uid://cq5rpnpyyqw87" path="res://entities/player.tscn" id="6_tipki"]
-[ext_resource type="PackedScene" uid="uid://cks2vlkxltb2u" path="res://entities/monsters.tscn" id="7_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bwxq55v4f0d6o" path="res://entities/enemy_tile.tscn" id="7_85g3d"]
 [ext_resource type="AudioStream" uid="uid://fxul7gablm1y" path="res://audio/music/RatDungeon.wav" id="7_o6xl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
@@ -73,6 +73,7 @@ floor_color = Color(0.86407286, 0.4753883, 0.13117146, 1)
 tile_scenes = Dictionary[String, PackedScene]({
 "5": ExtResource("7_85g3d"),
 "@": ExtResource("6_tipki"),
+"E": ExtResource("7_85g3d"),
 "T": ExtResource("6_85g3d")
 })
 unknown_tile_scene = ExtResource("6_choun")
