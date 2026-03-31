@@ -4,7 +4,9 @@ class_name Interactable
 
 @export var is_passable := true
 @export var is_enemy := false
+@export var is_triggerable := false
 
+var group_id := ""
 
 func _ready() -> void:
     Game.register_tile(self)
@@ -25,6 +27,10 @@ func on_stepped_on() -> void:
 
 func get_options() -> Array[Dictionary]:
     return []
+
+
+func set_group_id():
+    group_id = get_meta("group_id")
 
 
 func interact(choice_id: String = "") -> void:

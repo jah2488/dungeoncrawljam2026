@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bwxq55v4f0d6o" path="res://entities/enemy_tile.tscn" id="7_85g3d"]
 [ext_resource type="AudioStream" uid="uid://fxul7gablm1y" path="res://audio/music/RatDungeon.wav" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c1xr25buqn4te" path="res://entities/trap_tile.tscn" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://dlylan4bdyb3" path="res://entities/gate_tile.tscn" id="9_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://dkym4ab1gubxl" path="res://entities/wall_lever_tile.tscn" id="10_trceg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
 sky_top_color = Color(0.05, 0.05, 0.08, 1)
@@ -67,15 +69,18 @@ environment = SubResource("env")
 [node name="LevelGenerator" type="Node3D" parent="SubViewportContainer/SubViewport/World" unique_id=1155802989]
 script = ExtResource("5_choun")
 csv_file = "uid://bsfjfxxsxvkoc"
+wall_lever_character = null
 wall_texture = ExtResource("2_jyhfs")
 wall_normal_texture = ExtResource("3_tefeu")
 wall_uv_scale = Vector3(4, 4, 4)
 floor_color = Color(0.86407286, 0.4753883, 0.13117146, 1)
 tile_scenes = Dictionary[String, PackedScene]({
 "#": ExtResource("8_choun"),
+"2": ExtResource("10_trceg"),
 "5": ExtResource("7_85g3d"),
 "@": ExtResource("6_tipki"),
 "E": ExtResource("7_85g3d"),
+"G": ExtResource("9_eb6dy"),
 "T": ExtResource("6_85g3d")
 })
 unknown_tile_scene = ExtResource("6_choun")

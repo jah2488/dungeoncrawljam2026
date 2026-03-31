@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dkym4ab1gubxl"]
+
+[ext_resource type="Script" uid="uid://b32gy0e0wsrsu" path="res://scripts/entities/wall_lever_tile.gd" id="1_vig8u"]
+[ext_resource type="Texture2D" uid="uid://c2jneelo3ibwj" path="res://textures/wall_lever_off.png" id="2_404sq"]
+[ext_resource type="Texture2D" uid="uid://crt673345hkf6" path="res://textures/wall_lever_on.png" id="3_u3v0i"]
+
+[node name="WallLeverTile" type="Node3D" unique_id=465103814]
+script = ExtResource("1_vig8u")
+
+[node name="SpriteOff" type="Sprite3D" parent="." unique_id=2092884462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9000001, 2.1)
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("2_404sq")
+
+[node name="SpriteOn" type="Sprite3D" parent="." unique_id=1234290166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9000001, 2.1)
+pixel_size = 0.1
+texture_filter = 0
+texture = ExtResource("3_u3v0i")
