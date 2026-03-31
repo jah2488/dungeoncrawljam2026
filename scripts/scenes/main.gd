@@ -7,17 +7,19 @@ extends Control
 func _ready() -> void:
     if has_node("/root/Events"):
         Events.GameStarted.emit()
-    Events.PlayerTurned.connect(
-        func(rot):
+    Events.PlayerLocation.connect(
+        func(location, rot):
+            var dir = "?"
             match int(rad_to_deg(rot)):
                 -90, 90:
-                    %Compass.text = "E"
+                    dir = "E"
                 -180, 180:
-                    %Compass.text = "S"
+                    dir = "S"
                 -270, 270:
-                    %Compass.text = "W"
+                    dir = "W"
                 0, 360, -360:
-                    %Compass.text = "N"
+                    dir = "N"
+            %Compass.text = (str(location) + " " + dir)
     )
 
 
@@ -26,3 +28,27 @@ func _physics_process(_delta):
     if player:
         %MinimapCamera3D.position.x = player.position.x
         %MinimapCamera3D.position.z = player.position.z
+
+
+func _on_turn_left_pressed() -> void:
+    Events.PlayerTurned.emit(-90.0)
+
+
+func _on_turn_right_pressed() -> void:
+    Events.PlayerTurned.emit(90.0)
+
+
+func _on_forward_pressed() -> void:
+    Events.PlayerMoved.emit(0)
+
+
+func _on_right_pressed() -> void:
+    Events.PlayerMoved.emit(1)
+
+
+func _on_back_pressed() -> void:
+    Events.PlayerMoved.emit(2)
+
+
+func _on_left_pressed() -> void:
+    Events.PlayerMoved.emit(3)

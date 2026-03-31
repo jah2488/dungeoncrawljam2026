@@ -2,6 +2,8 @@ extends Node
 
 ## Game Events
 signal PlayerTurned(rot: float)
+signal PlayerMoved(dir: int)
+signal PlayerLocation(pos: Vector2i, rot: float)
 
 ## Utility events
 signal MouseCaptured
