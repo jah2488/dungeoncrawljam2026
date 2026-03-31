@@ -54,9 +54,12 @@ func _ready() -> void:
                 _do_turn_right = true
     )
     Events.PlayerMoved.connect(func(dir: int) -> void: _do_move_dir = dir)
+    Events.PlayerInspected.connect(_on_player_inspected)
+    Events.PlayerDisarmed.connect(_on_player_disarmed)
     Events.PlayerAttacked.connect(_on_player_attacked)
     Events.PlayerDefended.connect(_on_player_defended)
     Events.PlayerTakesDamage.connect(_on_player_takes_damage)
+    Events.PlayerTriggerTrap.connect(_on_player_trigger_trap)
 
 
 func _physics_process(_delta: float) -> void:
@@ -180,6 +183,16 @@ func _update_interaction_tile() -> void:
         #start combat?
 
 
+func _on_player_inspected() -> void:
+    if is_interacting_with:
+        is_interacting_with.interact("inspect")
+
+
+func _on_player_disarmed() -> void:
+    if is_interacting_with:
+        is_interacting_with.interact("disarm")
+
+
 func _on_player_attacked() -> void:
     if is_interacting_with and is_interacting_with.in_combat:
         print("Player attacked")
@@ -196,6 +209,16 @@ func _on_player_defended() -> void:
 func _on_player_takes_damage(amount: int, source: Interactable) -> void:
     print("Player takes (" + str(amount) + " damage from ", source)
     hp -= amount
+    print("Player hp == ", str(hp))
+
+
+
+func _on_player_trigger_trap(amount: int, source: Interactable) -> void:
+    print("Player takes (" + str(amount) + " damage from ", source)
+    hp -= amount
+    print("Player hp == ", str(hp))
+    %Spike/Sprite.play("flash")
+    %Spike/Audio.play()
 
 
 func _process(_delta: float) -> void:

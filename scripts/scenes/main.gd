@@ -58,6 +58,14 @@ func _on_left_pressed() -> void:
     Events.PlayerMoved.emit(3)
 
 
+func _on_inspect_pressed() -> void:
+    Events.PlayerInspected.emit()
+
+
+func _on_disarm_pressed() -> void:
+    Events.PlayerDisarmed.emit()
+
+
 func _on_attack_pressed() -> void:
     Events.PlayerAttacked.emit()
 
