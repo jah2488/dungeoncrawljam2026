@@ -110,81 +110,101 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=980145988]
+[node name="MiniMapContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=980145988]
 layout_mode = 2
+size_flags_vertical = 3
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3" unique_id=1696060022]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/MiniMapContainer" unique_id=1696060022]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer" unique_id=86136759]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/MiniMapContainer/PanelContainer" unique_id=86136759]
 clip_contents = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer" unique_id=1485982486]
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/MiniMapContainer/PanelContainer/SubViewportContainer" unique_id=1485982486]
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 100)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="MinimapCamera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer3/PanelContainer/SubViewportContainer/SubViewport" unique_id=125678457]
+[node name="MinimapCamera3D" type="Camera3D" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/MiniMapContainer/PanelContainer/SubViewportContainer/SubViewport" unique_id=125678457]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50, 0)
 projection = 1
 size = 20.0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1266707013]
+[node name="PositionContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1266707013]
 layout_mode = 2
 
-[node name="Compass" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=2091070913]
+[node name="Compass" type="Label" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/PositionContainer" unique_id=2091070913]
 unique_name_in_owner = true
 layout_mode = 2
 text = "diRATction"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1727117625]
+[node name="RotationContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1727117625]
 layout_mode = 2
 alignment = 1
 
-[node name="TurnLeft" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=30671333]
+[node name="TurnLeft" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer" unique_id=30671333]
 unique_name_in_owner = true
 layout_mode = 2
 text = "↪️"
 
-[node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1485679353]
+[node name="Forward" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer" unique_id=1485679353]
 unique_name_in_owner = true
 layout_mode = 2
 text = "⬆️"
 
-[node name="TurnRight" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1083511150]
+[node name="TurnRight" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer" unique_id=1083511150]
 unique_name_in_owner = true
 layout_mode = 2
 text = "↩️"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1362058509]
+[node name="StrafingContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1362058509]
 layout_mode = 2
 alignment = 1
 
-[node name="Left" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=631391758]
+[node name="Left" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer" unique_id=631391758]
 unique_name_in_owner = true
 layout_mode = 2
 text = "⬅️"
 
-[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=1556946753]
+[node name="Back" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer" unique_id=1556946753]
 unique_name_in_owner = true
 layout_mode = 2
 text = "⬇️"
 
-[node name="Right" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2" unique_id=1202707790]
+[node name="Right" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer" unique_id=1202707790]
 unique_name_in_owner = true
 layout_mode = 2
 text = "➡️"
+
+[node name="CombatContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=518238522]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="CombatButtons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer" unique_id=1844486800]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Attack" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer/CombatButtons" unique_id=670928115]
+layout_mode = 2
+text = "ATTACK"
+
+[node name="Block" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer/CombatButtons" unique_id=1304994370]
+layout_mode = 2
+text = "BLOCK"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=956766921]
 stream = ExtResource("7_o6xl0")
@@ -194,9 +214,11 @@ autoplay = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696365698]
 follow_viewport_enabled = true
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/TurnLeft" to="." method="_on_turn_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/Forward" to="." method="_on_forward_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/TurnRight" to="." method="_on_turn_right_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/Left" to="." method="_on_left_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer2/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer/TurnLeft" to="." method="_on_turn_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer/Forward" to="." method="_on_forward_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/RotationContainer/TurnRight" to="." method="_on_turn_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/StrafingContainer/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer/CombatButtons/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer/CombatButtons/Block" to="." method="_on_block_pressed"]

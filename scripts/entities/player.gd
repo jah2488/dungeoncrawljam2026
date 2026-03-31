@@ -33,25 +33,30 @@ var _do_turn_left: bool = false
 var _do_turn_right: bool = false
 var _do_move_dir: int = -1
 
+# Player Stats
+@export var max_hp := 99
+@export var hp := 99
+@export var damage := 10
+
 
 func _ready() -> void:
     global_position.y = 0.8
     grid_position = _snap_to_grid(position)
     position = grid_position
     _create_raycasts()
-    _create_debug_highlight()
+    # _create_debug_highlight()
     _update_interaction_tile()
     Events.PlayerTurned.connect(
         func(rot: float) -> void:
-            if rot > 0:
+            if rot < 0:
                 _do_turn_left = true
             else:
                 _do_turn_right = true
     )
-    Events.PlayerMoved.connect(
-        func(dir: int) -> void:
-            _do_move_dir = dir
-    )
+    Events.PlayerMoved.connect(func(dir: int) -> void: _do_move_dir = dir)
+    Events.PlayerAttacked.connect(_on_player_attacked)
+    Events.PlayerDefended.connect(_on_player_defended)
+    Events.PlayerTakesDamage.connect(_on_player_takes_damage)
 
 
 func _physics_process(_delta: float) -> void:
@@ -162,12 +167,35 @@ func _update_interaction_tile() -> void:
 
     if is_interacting_with:
         is_interacting_with.on_unfocused()
+        if is_interacting_with.is_enemy:
+            Events.EndCombat.emit()
 
     is_interacting_with = new_tile
 
     if is_interacting_with:
         is_interacting_with.on_focused()
         is_interacting_with.get_options()
+        if is_interacting_with.is_enemy:
+            Events.StartCombat.emit()
+        #start combat?
+
+
+func _on_player_attacked() -> void:
+    if is_interacting_with and is_interacting_with.in_combat:
+        print("Player attacked")
+        is_interacting_with.take_damage(damage)
+        is_interacting_with.interact("attack")
+
+
+func _on_player_defended() -> void:
+    if is_interacting_with and is_interacting_with.in_combat:
+        print("Player blocked")
+        is_interacting_with.interact("block")
+
+
+func _on_player_takes_damage(amount: int, source: Interactable) -> void:
+    print("Player takes (" + str(amount) + " damage from ", source)
+    hp -= amount
 
 
 func _process(_delta: float) -> void:

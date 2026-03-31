@@ -1,10 +1,5 @@
 extends Node
 
-## Game Events
-signal PlayerTurned(rot: float)
-signal PlayerMoved(dir: int)
-signal PlayerLocation(pos: Vector2i, rot: float)
-
 ## Utility events
 signal MouseCaptured
 signal MouseReleased
@@ -24,10 +19,15 @@ signal LoadCompleted
 signal SceneChangeStarted(scene_path: String)
 signal SceneChangeCompleted(scene_path: String)
 
-## Add your game-specific signals below:
-# signal EnemyDefeated(enemy: Node)
-# signal ItemCollected(item_type: int, amount: int)
-# signal LevelCompleted(level_id: String)
+## Game Events
+signal PlayerTurned(rot: float)
+signal PlayerMoved(dir: int)
+signal PlayerLocation(pos: Vector2i, rot: float)
+signal PlayerAttacked
+signal PlayerDefended
+signal PlayerTakesDamage(amount: int, source: Interactable)
+signal StartCombat
+signal EndCombat
 
 
 ## Debug helper — logs signal emission with frame number, then emits it.

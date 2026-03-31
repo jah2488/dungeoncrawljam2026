@@ -24,6 +24,7 @@ extends Node3D
 @export var tile_scenes: Dictionary[String, PackedScene] = { }
 @export var unknown_tile_scene: PackedScene
 
+@warning_ignore("unused_private_class_variable")
 @export_tool_button("Regenerate Level", "Reload") var _regenerate_btn: Callable = regenerate
 
 var _grid: Array = []

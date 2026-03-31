@@ -1,6 +1,8 @@
 extends Control
 
+@warning_ignore("unused_private_class_variable")
 @onready var _sub_viewport_container: SubViewportContainer = $SubViewportContainer
+@warning_ignore("unused_private_class_variable")
 @onready var _sub_viewport: SubViewport = $SubViewportContainer/SubViewport
 
 
@@ -21,6 +23,8 @@ func _ready() -> void:
                     dir = "N"
             %Compass.text = (str(location) + " " + dir)
     )
+    Events.StartCombat.connect(func(): %CombatButtons.visible = true)
+    Events.EndCombat.connect(func(): %CombatButtons.visible = false)
 
 
 func _physics_process(_delta):
@@ -52,3 +56,11 @@ func _on_back_pressed() -> void:
 
 func _on_left_pressed() -> void:
     Events.PlayerMoved.emit(3)
+
+
+func _on_attack_pressed() -> void:
+    Events.PlayerAttacked.emit()
+
+
+func _on_block_pressed() -> void:
+    Events.PlayerDefended.emit()

@@ -3,6 +3,7 @@ extends Node3D
 class_name Interactable
 
 @export var is_passable := true
+@export var is_enemy := false
 
 
 func _ready() -> void:
