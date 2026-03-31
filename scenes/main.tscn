@@ -37,6 +37,9 @@ adjustment_brightness = 0.96
 adjustment_contrast = 1.035
 adjustment_saturation = 0.99
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.78, 0, 0.22099997, 1)
+
 [node name="Main" type="Control" unique_id=1034031074]
 layout_mode = 3
 anchors_preset = 15
@@ -103,6 +106,34 @@ anchor_bottom = 1.0
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1536757516]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/Panel2" unique_id=1982114628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer/Panel2/VBoxContainer" unique_id=354344698]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_85g3d")
+value = 100.0
+rounded = true
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Panel2/VBoxContainer" unique_id=2049940]
+layout_mode = 2
+text = "HP"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="VBoxContainer/HBoxContainer" unique_id=1686479784]
 custom_minimum_size = Vector2(100, 118)
@@ -231,6 +262,66 @@ text = "ATTACK"
 [node name="Block" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/CombatContainer/CombatButtons" unique_id=1304994370]
 layout_mode = 2
 text = "BLOCK"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=2006749626]
+layout_mode = 2
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1405234432]
+layout_mode = 2
+columns = 4
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1854298809]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=413092958]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=2135247704]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1243248656]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=780814068]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1757943010]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=239460427]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button8" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1642193083]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button9" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=214474900]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button10" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1388926200]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button11" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=789650514]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="Button12" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1765143236]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1633924359]
+layout_mode = 2
+theme_override_constants/margin_top = 25
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=956766921]
 stream = ExtResource("7_o6xl0")

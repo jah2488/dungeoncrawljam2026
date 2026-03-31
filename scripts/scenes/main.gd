@@ -25,6 +25,7 @@ func _ready() -> void:
     )
     Events.StartCombat.connect(func(): %CombatButtons.visible = true)
     Events.EndCombat.connect(func(): %CombatButtons.visible = false)
+    Events.UpdatePlayerHP.connect(func(hp): %HealthBar.value = hp)
 
 
 func _physics_process(_delta):
