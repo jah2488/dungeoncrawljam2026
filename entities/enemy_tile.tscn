@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bwxq55v4f0d6o"]
+
+[ext_resource type="Script" uid="uid://dj76pndw814am" path="res://scripts/entities/enemy_tile.gd" id="1_nqkpp"]
+[ext_resource type="Texture2D" uid="uid://yl5sy0jb7iq1" path="res://textures/ratty.png" id="2_nqkpp"]
+
+[node name="EnemyTile" type="Node3D" unique_id=1784573718]
+script = ExtResource("1_nqkpp")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1533482902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+pixel_size = 0.1
+billboard = 1
+double_sided = false
+texture_filter = 0
+texture = ExtResource("2_nqkpp")

@@ -7,6 +7,7 @@ extends Node3D
 @export var wall_height: float = 4.0
 @export var wall_thickness: float = 0.1
 @export var wall_character: String = "1"
+@export var ground_character: String = "0"
 
 @export_group("Wall Material")
 @export var wall_texture: Texture2D
@@ -181,7 +182,7 @@ func _place_tiles() -> void:
     for row in range(_rows):
         for col in range(_cols):
             var val := _get_cell(row, col)
-            if val.is_empty() or val == "0" or val == wall_character:
+            if val.is_empty() or val == ground_character or val == wall_character:
                 continue
             var scene: PackedScene
             if tile_scenes.has(val):
