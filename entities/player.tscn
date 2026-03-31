@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cntoq4l8nnvqp" path="res://scripts/entities/player.gd" id="1_e4p34"]
 [ext_resource type="Shader" uid="uid://ddujp3mur7ant" path="res://shaders/crt.gdshader" id="2_rfe5m"]
 [ext_resource type="Shader" uid="uid://mlpssn2c8pj2" path="res://shaders/vhs.gdshader" id="3_qly61"]
+[ext_resource type="Texture2D" uid="uid://doud1ql8ynt0h" path="res://textures/spike-blades.png" id="4_rfe5m"]
+[ext_resource type="AudioStream" uid="uid://dbwpbx5nbr71c" path="res://audio/fx/trap_hit.wav" id="5_qly61"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
 
@@ -53,6 +55,26 @@ shader_parameter/band_noise_intensity = 0.08
 shader_parameter/band_speed = 1.0000000149012
 shader_parameter/channel_offset = 0.0015999999596
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfe5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rfe5m")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rfe5m")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"flash",
+"speed": 10.0
+}]
+
 [node name="Player" type="CharacterBody3D" unique_id=796200585 groups=["player"]]
 script = ExtResource("1_e4p34")
 
@@ -81,3 +103,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Effects" type="Node3D" parent="." unique_id=171465152]
+
+[node name="Spike" type="Node3D" parent="Effects" unique_id=1307959174]
+unique_name_in_owner = true
+
+[node name="Sprite" type="AnimatedSprite3D" parent="Effects/Spike" unique_id=331340572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -1)
+pixel_size = 0.15
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_rfe5m")
+animation = &"flash"
+frame = 3
+frame_progress = 1.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="Effects/Spike" unique_id=1279101000]
+stream = ExtResource("5_qly61")
