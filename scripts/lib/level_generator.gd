@@ -143,8 +143,9 @@ func _generate_ceiling() -> void:
     var width := _cols * cell_size
     var depth := _rows * cell_size
 
-    var mesh := BoxMesh.new()
-    mesh.size = Vector3(width, 0.2, depth)
+    var mesh := QuadMesh.new()
+    mesh.size = Vector2(width, depth)
+    mesh.orientation = PlaneMesh.FACE_Y
 
     var mat := StandardMaterial3D.new()
     mat.albedo_color = ceiling_color
@@ -155,13 +156,14 @@ func _generate_ceiling() -> void:
         mat.normal_texture = ceiling_normal_texture
     mat.uv1_scale = ceiling_uv_scale
     mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+    mat.cull_mode = BaseMaterial3D.CULL_FRONT
 
     var mesh_inst := MeshInstance3D.new()
     mesh_inst.mesh = mesh
     mesh_inst.material_override = mat
 
     var shape := BoxShape3D.new()
-    shape.size = Vector3(width, 0.2, depth)
+    shape.size = Vector3(width, 0.1, depth)
     var collision := CollisionShape3D.new()
     collision.shape = shape
 
@@ -169,7 +171,7 @@ func _generate_ceiling() -> void:
     ceiling_body.add_child(collision)
     ceiling_body.position = Vector3(
         (_cols - 1) * cell_size / 2.0,
-        wall_height + 0.1,
+        wall_height,
         (_rows - 1) * cell_size / 2.0,
     )
 
@@ -183,6 +185,7 @@ func _generate_walls() -> void:
     if wall_normal_texture:
         wall_mat.normal_enabled = true
         wall_mat.normal_texture = wall_normal_texture
+        wall_mat.normal_scale = 12.0
     wall_mat.uv1_scale = wall_uv_scale
     wall_mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 

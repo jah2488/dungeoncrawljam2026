@@ -1,6 +1,7 @@
 extends Node
 
 enum GameState { STARTING, PLAYING, PAUSED, QUITTING }
+enum DamageType { NORMAL, GRASS, WATER, FIRE }
 
 const PAUSE_MENU := "res://scenes/pause_menu.tscn"
 

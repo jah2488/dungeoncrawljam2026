@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b6jyjl1xwgwqj"]
+
+[ext_resource type="Script" uid="uid://slqv2onngbcj" path="res://resources/item.gd" id="1_tvq4q"]
+[ext_resource type="Texture2D" uid="uid://5d0w0eurucq5" path="res://textures/cheese.png" id="1_y5ljc"]
+
+[resource]
+script = ExtResource("1_tvq4q")
+name = "Cheese"
+desc = "A hearty looking piece of cheese"
+icon = ExtResource("1_y5ljc")
+buy_price = 3
+sale_price = 1
+heal_amount = 5
+metadata/_custom_type_script = "uid://slqv2onngbcj"

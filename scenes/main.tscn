@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bxush7c3uu67l" path="res://textures/pink_walls.png" id="2_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://c7mi8rdbydhnk" path="res://textures/pink_walls-normal.png" id="3_tefeu"]
 [ext_resource type="Script" uid="uid://c52avx43almfe" path="res://scripts/lib/level_generator.gd" id="5_choun"]
+[ext_resource type="Texture2D" uid="uid://byalf8nqf8lgb" path="res://textures/floor.png" id="5_trceg"]
 [ext_resource type="PackedScene" uid="uid://c8ubs27hihx60" path="res://entities/text_tile.tscn" id="6_85g3d"]
+[ext_resource type="Texture2D" uid="uid://drevb8pf03g0g" path="res://textures/floor-normal.png" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://rp01p22xyd63" path="res://entities/unknown-tile.tscn" id="6_choun"]
 [ext_resource type="PackedScene" uid="uid://cq5rpnpyyqw87" path="res://entities/player.tscn" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://bwxq55v4f0d6o" path="res://entities/enemy_tile.tscn" id="7_85g3d"]
@@ -29,14 +31,17 @@ background_mode = 1
 sky = SubResource("sky")
 ambient_light_source = 2
 ambient_light_color = Color(0.40855247, 0.4090126, 0.51132077, 1)
-ambient_light_energy = 2.26
+ambient_light_energy = 1.2
 tonemap_mode = 3
-fog_light_color = Color(0.34118038, 0.18423286, 0.5216348, 1)
+tonemap_exposure = 1.04
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.35444975, 0.3048376, 0.28711534, 1)
 fog_density = 0.0335
 adjustment_enabled = true
 adjustment_brightness = 0.96
 adjustment_contrast = 1.035
-adjustment_saturation = 0.99
+adjustment_saturation = 1.01
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
 bg_color = Color(0.78, 0, 0.22099997, 1)
@@ -83,9 +88,14 @@ csv_file = "uid://bsfjfxxsxvkoc"
 wall_texture = ExtResource("2_jyhfs")
 wall_normal_texture = ExtResource("3_tefeu")
 wall_uv_scale = Vector3(4, 4, 4)
-floor_color = Color(0.86407286, 0.4753883, 0.13117146, 1)
-ceiling_color = Color(0.6394806, 0.45498347, 0.253986, 1)
-ceiling_uv_scale = null
+floor_color = Color(0.8849165, 0.54521775, 0.69746333, 1)
+floor_texture = ExtResource("5_trceg")
+floor_normal_texture = ExtResource("6_a8y0u")
+floor_uv_scale = Vector3(100, 100, 100)
+ceiling_color = Color(0.94664735, 0.90548587, 0.95594937, 1)
+ceiling_texture = ExtResource("5_trceg")
+ceiling_normal_texture = ExtResource("6_a8y0u")
+ceiling_uv_scale = Vector3(500, 200, 400)
 tile_scenes = Dictionary[String, PackedScene]({
 "#": ExtResource("8_choun"),
 "2": ExtResource("10_trceg"),
@@ -100,6 +110,7 @@ unknown_tile_scene = ExtResource("6_choun")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/SubViewportContainer/SubViewport" unique_id=199795231]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
+visible = false
 light_color = Color(0.37162217, 0.3716222, 0.37162215, 1)
 light_energy = 0.504
 shadow_enabled = true
@@ -285,57 +296,94 @@ text = "BLOCK"
 layout_mode = 2
 alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1405234432]
+[node name="InventoryContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer" unique_id=1405234432]
+unique_name_in_owner = true
 layout_mode = 2
 columns = 4
 
-[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1854298809]
+[node name="Button1" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1854298809]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=413092958]
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=413092958]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=2135247704]
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=2135247704]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1243248656]
+[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1243248656]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=780814068]
+[node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=780814068]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1757943010]
+[node name="Button6" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1757943010]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=239460427]
+[node name="Button7" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=239460427]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button8" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1642193083]
+[node name="Button8" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1642193083]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button9" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=214474900]
+[node name="Button9" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=214474900]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button10" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1388926200]
+[node name="Button10" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1388926200]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button11" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=789650514]
+[node name="Button11" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=789650514]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
-[node name="Button12" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/GridContainer" unique_id=1765143236]
+[node name="Button12" type="Button" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/HBoxContainer/InventoryContainer" unique_id=1765143236]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+disabled = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer" unique_id=1633924359]
 layout_mode = 2

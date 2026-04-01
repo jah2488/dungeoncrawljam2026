@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjftkk80nv32"]
+
+[ext_resource type="Script" uid="uid://vw4rowf2fqw1" path="res://entities/item_tile.gd" id="1_dqr1b"]
+
+[node name="ItemTile" type="Node3D" unique_id=1289740981]
+script = ExtResource("1_dqr1b")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1617957551]

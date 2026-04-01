@@ -121,3 +121,18 @@ frame_progress = 1.0
 
 [node name="Audio" type="AudioStreamPlayer" parent="Camera3D/Effects/Spike" unique_id=1279101000]
 stream = ExtResource("5_qly61")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D" unique_id=881368321]
+visible = false
+light_color = Color(0.7423364, 0.49721983, 2.8195846e-06, 1)
+light_energy = 2.0
+shadow_enabled = true
+omni_range = 32.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1061730348]
+light_color = Color(0.87, 0.576375, 0.2175, 1)
+light_energy = 6.0
+shadow_enabled = true
+spot_range = 8.0
+spot_attenuation = 1.2
+spot_angle = 60.0
