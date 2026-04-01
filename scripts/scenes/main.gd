@@ -5,6 +5,8 @@ extends Control
 @warning_ignore("unused_private_class_variable")
 @onready var _sub_viewport: SubViewport = $SubViewportContainer/SubViewport
 
+var player_inventory := []
+
 
 func _ready() -> void:
     if has_node("/root/Events"):

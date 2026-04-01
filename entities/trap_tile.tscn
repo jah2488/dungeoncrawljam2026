@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c1xr25buqn4te"]
 
-[ext_resource type="Script" uid="uid://dohsiqivdhsip" path="res://scripts/entities/trap_tile.gd" id="1_ta366"]
+[ext_resource type="Script" path="res://scripts/entities/trap_tile.gd" id="1_ta366"]
 [ext_resource type="Texture2D" uid="uid://0qml6oo4qt5" path="res://textures/spike-holes.png" id="2_3kqpd"]
 
 [node name="TrapTile" type="Node3D" unique_id=1161840146]
@@ -11,5 +11,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.90000004)
 cast_shadow = 0
 pixel_size = 0.02
 axis = 1
+billboard = 2
 texture_filter = 0
 texture = ExtResource("2_3kqpd")
