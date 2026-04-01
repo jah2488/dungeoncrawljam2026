@@ -1,14 +1,11 @@
 extends Control
 
-@warning_ignore("unused_private_class_variable")
-@onready var _sub_viewport_container: SubViewportContainer = $SubViewportContainer
-@warning_ignore("unused_private_class_variable")
-@onready var _sub_viewport: SubViewport = $SubViewportContainer/SubViewport
+var cheese = preload("res://resources/items/cheese.tres")
+var fire_scale = preload("res://resources/items/fire_scale.tres")
+var player_inventory: Array[Item] = [cheese, fire_scale]
 
 
 func _ready() -> void:
-    if has_node("/root/Events"):
-        Events.GameStarted.emit()
     Events.PlayerLocation.connect(
         func(location, rot):
             var dir = "?"
@@ -25,6 +22,32 @@ func _ready() -> void:
     )
     Events.StartCombat.connect(func(): %CombatButtons.visible = true)
     Events.EndCombat.connect(func(): %CombatButtons.visible = false)
+    Events.UpdatePlayerHP.connect(func(hp): %HealthBar.value = hp)
+    Events.PlayerAcquiresItem.connect(
+        func(item):
+            player_inventory.append(item)
+            _update_inventory()
+    )
+    Events.GameStarted.emit()
+    for child in %InventoryContainer.get_children():
+        child.pressed.connect(_on_inventory_button_pressed, CONNECT_APPEND_SOURCE_OBJECT)
+    _update_inventory()
+
+
+func _update_inventory() -> void:
+    var idx = 0
+    for item in player_inventory:
+        var child: Button = %InventoryContainer.get_child(idx)
+        child.disabled = false
+        child.icon = item.icon
+        idx += 1
+
+
+func _on_inventory_button_pressed(button: Button) -> void:
+    var idx = (button.name.split("Button")[1].to_int() - 1)
+    var item = player_inventory[idx]
+    print(item.name, item.description)
+    #TODO: Actually use the item
 
 
 func _physics_process(_delta):

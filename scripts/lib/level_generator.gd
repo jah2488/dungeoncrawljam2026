@@ -21,10 +21,17 @@ extends Node3D
 @export var floor_normal_texture: Texture2D
 @export var floor_uv_scale: Vector3 = Vector3(10, 10, 10)
 
+@export_group("Ceiling Material")
+@export var ceiling_color: Color = Color(0.2, 0.2, 0.2)
+@export var ceiling_texture: Texture2D
+@export var ceiling_normal_texture: Texture2D
+@export var ceiling_uv_scale: Vector3 = Vector3(10, 10, 10)
+
 @export_group("Tile Scenes")
 @export var tile_scenes: Dictionary[String, PackedScene] = { }
 @export var unknown_tile_scene: PackedScene
 
+@export_group("REGEN LEVEL")
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Regenerate Level", "Reload") var _regenerate_btn: Callable = regenerate
 
@@ -44,6 +51,7 @@ func regenerate() -> void:
         return
     _parse_csv()
     _generate_floor()
+    _generate_ceiling()
     _generate_walls()
     _place_tiles()
 
@@ -128,6 +136,48 @@ func _generate_floor() -> void:
     add_child(floor_body)
 
 
+func _generate_ceiling() -> void:
+    var ceiling_body := StaticBody3D.new()
+    ceiling_body.name = "GeneratedCeiling"
+
+    var width := _cols * cell_size
+    var depth := _rows * cell_size
+
+    var mesh := QuadMesh.new()
+    mesh.size = Vector2(width, depth)
+    mesh.orientation = PlaneMesh.FACE_Y
+
+    var mat := StandardMaterial3D.new()
+    mat.albedo_color = ceiling_color
+    if ceiling_texture:
+        mat.albedo_texture = ceiling_texture
+    if ceiling_normal_texture:
+        mat.normal_enabled = true
+        mat.normal_texture = ceiling_normal_texture
+    mat.uv1_scale = ceiling_uv_scale
+    mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+    mat.cull_mode = BaseMaterial3D.CULL_FRONT
+
+    var mesh_inst := MeshInstance3D.new()
+    mesh_inst.mesh = mesh
+    mesh_inst.material_override = mat
+
+    var shape := BoxShape3D.new()
+    shape.size = Vector3(width, 0.1, depth)
+    var collision := CollisionShape3D.new()
+    collision.shape = shape
+
+    ceiling_body.add_child(mesh_inst)
+    ceiling_body.add_child(collision)
+    ceiling_body.position = Vector3(
+        (_cols - 1) * cell_size / 2.0,
+        wall_height,
+        (_rows - 1) * cell_size / 2.0,
+    )
+
+    add_child(ceiling_body)
+
+
 func _generate_walls() -> void:
     var wall_mat := StandardMaterial3D.new()
     if wall_texture:
@@ -135,6 +185,7 @@ func _generate_walls() -> void:
     if wall_normal_texture:
         wall_mat.normal_enabled = true
         wall_mat.normal_texture = wall_normal_texture
+        wall_mat.normal_scale = 12.0
     wall_mat.uv1_scale = wall_uv_scale
     wall_mat.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 
@@ -206,6 +257,7 @@ func _place_tiles() -> void:
 
             add_child(instance)
 
+
 func _add_to_group(key, instance):
     # Prevents issues when regenerating in the editor vs at game run
     if not Engine.is_editor_hint():
@@ -215,7 +267,11 @@ func _add_to_group(key, instance):
 
 func _tile_rotation(key):
     match key:
-        "L": return -PI / 2
-        "R": return PI / 2
-        "U": return PI
-        "D": return 0.0
+        "L":
+            return -PI / 2
+        "R":
+            return PI / 2
+        "U":
+            return PI
+        "D":
+            return 0.0

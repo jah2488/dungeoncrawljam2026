@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dohsiqivdhsip" path="res://scripts/entities/trap_tile.gd" id="1_ta366"]
 [ext_resource type="Texture2D" uid="uid://0qml6oo4qt5" path="res://textures/spike-holes.png" id="2_3kqpd"]
+[ext_resource type="PackedScene" uid="uid://yg7aynkp8lc1" path="res://models/unnamed.gltf" id="3_efanu"]
 
 [node name="TrapTile" type="Node3D" unique_id=1161840146]
 script = ExtResource("1_ta366")
@@ -11,5 +12,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.90000004)
 cast_shadow = 0
 pixel_size = 0.02
 axis = 1
+billboard = 2
 texture_filter = 0
 texture = ExtResource("2_3kqpd")
+
+[node name="holes" parent="." unique_id=396747899 instance=ExtResource("3_efanu")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.7, 0.1, 0)

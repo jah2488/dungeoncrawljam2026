@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://c52cumnb8y1vy"]
+
+[ext_resource type="Script" uid="uid://slqv2onngbcj" path="res://resources/item.gd" id="1_h3c4i"]
+[ext_resource type="Texture2D" uid="uid://dtvxe67or8so3" path="res://textures/dragon-scale-red.png" id="1_kc2h8"]
+
+[resource]
+script = ExtResource("1_h3c4i")
+name = "Fire Scale"
+desc = "A scale from a terrifying fire drake"
+icon = ExtResource("1_kc2h8")
+sale_price = 0
+damage = 5
+damage_type = 3
+charges = 5
+uses = 0
+metadata/_custom_type_script = "uid://slqv2onngbcj"

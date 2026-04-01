@@ -1,6 +1,7 @@
 extends Node
 
-var group_pool = {}
+var group_pool = { }
+
 
 func add_item_to_group(group_id, item):
     if group_pool.has(group_id):

@@ -211,7 +211,7 @@ func _on_player_takes_damage(amount: int, source: Interactable) -> void:
     print("Player takes (" + str(amount) + " damage from ", source)
     hp -= amount
     print("Player hp == ", str(hp))
-
+    Events.UpdatePlayerHP.emit(hp)
 
 
 func _on_player_trigger_trap(amount: int, source: Interactable) -> void:
@@ -220,6 +220,7 @@ func _on_player_trigger_trap(amount: int, source: Interactable) -> void:
     print("Player hp == ", str(hp))
     %Spike/Sprite.play("flash")
     %Spike/Audio.play()
+    Events.UpdatePlayerHP.emit(hp)
 
 
 func _on_player_heals(amount: int, source: Interactable) -> void:
