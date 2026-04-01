@@ -17,3 +17,7 @@ func trigger_items_in_group(group_id):
     for item in group_pool[group_id]:
         if item.is_triggerable:
             item.trigger()
+
+
+func has_triggerable_items(group_id) -> bool:
+    return group_pool[group_id].any(func(item): return item.is_triggerable)

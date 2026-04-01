@@ -7,15 +7,19 @@ var print_name: String = "[TrapTile (armed)]"
 
 var triggered := false
 var damage := 1
+var lever_up := true
 var armed := true
 var difficulty := 0.5
 var disarm_attempt := 0
 var is_trap = true
 
+
 func _ready() -> void:
     super()
     is_passable = true
     is_enemy = false
+    is_triggerable = true
+    set_group_id()
 
 
 func on_focused() -> void:
@@ -48,9 +52,7 @@ func interact(choice_id: String = "") -> void:
             disarm_attempt += 1
             var attempt = randf_range(0.0, 1.0)
             if attempt >= difficulty - (difficulty * disarm_attempt / 10): # difficulty lowers by 10% base difficulty every attempt
-                armed = false
-                print_name = "[TrapTile (disarmed)]"
-                print("Player disarms the trap")
+                disarm()
             else:
                 print("Player fails to disarm the trap")
                 Events.PlayerTriggerTrap.emit(damage, self)
@@ -61,3 +63,15 @@ func interact(choice_id: String = "") -> void:
                 print("Its a trap! But its disarmed")
         _:
             print("you cannot perform this action on a trap")
+
+
+func disarm():
+    armed = false
+    is_triggerable = false
+    print_name = "[TrapTile (disarmed)]"
+    print("Player disarms the trap")
+
+
+func trigger() -> void:
+    if armed == true:
+        disarm()

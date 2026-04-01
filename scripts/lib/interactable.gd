@@ -30,7 +30,8 @@ func get_options() -> Array[Dictionary]:
 
 
 func set_group_id():
-    group_id = get_meta("group_id")
+    if get_meta("group_id"):
+        group_id = get_meta("group_id")
 
 
 func interact(choice_id: String = "") -> void:

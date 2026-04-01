@@ -29,6 +29,7 @@ signal PlayerAttacked
 signal PlayerDefended
 signal PlayerTakesDamage(amount: int, source: Interactable)
 signal PlayerTriggerTrap(amount: int, source: Interactable)
+signal PlayerHeals(amount: int, source: Interactable)
 signal StartCombat
 signal EndCombat
 
