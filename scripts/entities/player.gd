@@ -60,6 +60,7 @@ func _ready() -> void:
     Events.PlayerDefended.connect(_on_player_defended)
     Events.PlayerTakesDamage.connect(_on_player_takes_damage)
     Events.PlayerTriggerTrap.connect(_on_player_trigger_trap)
+    Events.PlayerHeals.connect(_on_player_heals)
 
 
 func _physics_process(_delta: float) -> void:
@@ -219,6 +220,12 @@ func _on_player_trigger_trap(amount: int, source: Interactable) -> void:
     print("Player hp == ", str(hp))
     %Spike/Sprite.play("flash")
     %Spike/Audio.play()
+
+
+func _on_player_heals(amount: int, source: Interactable) -> void:
+    print("Player heals for (" + str(amount) + " from eating ", source)
+    hp += amount
+    print("Player hp == ", str(hp))
 
 
 func _process(_delta: float) -> void:

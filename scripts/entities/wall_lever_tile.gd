@@ -40,11 +40,15 @@ func interact(choice_id: String = "") -> void:
         "inspect":
             if status == Status.OFF:
                 status = Status.ON
-                print("Pulled lever down... you hear something move...")
             elif status == Status.ON:
                 status = Status.OFF
-                print("Pushed lever up... you hear something move...")
-            Groups.trigger_items_in_group(group_id)
+
+            if Groups.has_triggerable_items(group_id):
+                Groups.trigger_items_in_group(group_id)
+                print("You push the lever... and hear something move")
+            else:
+                print("You push the lever... nothing happens")
+
             pick_sprite()
         _:
             print("you cannot perform this action on a wall lever")

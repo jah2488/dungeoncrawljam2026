@@ -199,8 +199,23 @@ func _place_tiles() -> void:
             var pos := _cell_position(row, col)
             instance.position = Vector3(pos.x, 0.0, pos.z)
 
-            if val_arr.size() == 2:
-                Groups.add_item_to_group(val_arr[1], instance)
-                instance.set_meta("group_id", str(val_arr[1]))
+            if val_arr.size() >= 2:
+                _add_to_group(val_arr[1], instance)
+            if val_arr.size() >= 3:
+                instance.rotation.y = _tile_rotation(val_arr[2])
 
             add_child(instance)
+
+func _add_to_group(key, instance):
+    # Prevents issues when regenerating in the editor vs at game run
+    if not Engine.is_editor_hint():
+        Groups.add_item_to_group(key, instance)
+    instance.set_meta("group_id", str(key))
+
+
+func _tile_rotation(key):
+    match key:
+        "L": return -PI / 2
+        "R": return PI / 2
+        "U": return PI
+        "D": return 0.0

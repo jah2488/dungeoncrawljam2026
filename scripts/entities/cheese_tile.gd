@@ -1,17 +1,18 @@
 extends Interactable
 
-class_name GateTile
+class_name CheeseTile
 
-var print_name: String = "[GateTile]"
+var print_name: String = "[CheeseTile]"
 @export var text: String = ""
+
+var healing_amount := 5
 
 
 func _ready() -> void:
     super()
-    is_passable = false
+    is_passable = true
     is_enemy = false
-    is_triggerable = true
-    set_group_id()
+    is_triggerable = false
 
 
 func on_focused() -> void:
@@ -35,16 +36,8 @@ func interact(choice_id: String = "") -> void:
     print(print_name + " (interaction) ", choice_id)
     match choice_id:
         "inspect":
-            print("This gate is locked...")
+            Events.PlayerHeals.emit(healing_amount, self)
+            print("Mmmm, cheese")
+            queue_free()
         _:
-            print("you cannot perform this action on a gate")
-
-
-func trigger() -> void:
-    print(is_passable)
-    if is_passable == true:
-        is_passable = false
-        $Sprite3D.show()
-    else:
-        is_passable = true
-        $Sprite3D.hide()
+            print("you cannot perform this action on cheese")
