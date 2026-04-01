@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c61sl5r1rv1hp"]
+
+[ext_resource type="Script" uid="uid://dyw8lqh5vaffd" path="res://scripts/entities/mouse_hole_tile.gd" id="1_gjh64"]
+[ext_resource type="Texture2D" uid="uid://wduth2wlddnm" path="res://textures/rat-hole.png" id="2_n0qip"]
+
+[node name="MouseHole" type="Node3D" unique_id=1610577263]
+script = ExtResource("1_gjh64")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=252704442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 2.05)
+pixel_size = 0.18
+texture_filter = 0
+texture = ExtResource("2_n0qip")
