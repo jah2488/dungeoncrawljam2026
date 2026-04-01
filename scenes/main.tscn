@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dlylan4bdyb3" path="res://entities/gate_tile.tscn" id="9_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://dkym4ab1gubxl" path="res://entities/wall_lever_tile.tscn" id="10_trceg"]
 [ext_resource type="PackedScene" uid="uid://kasdbx4el2sd" path="res://entities/cheese_tile.tscn" id="11_trceg"]
+[ext_resource type="PackedScene" uid="uid://brftx2i4d3d1a" path="res://entities/merchant_tile.tscn" id="12_a8y0u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
 sky_top_color = Color(0.05, 0.05, 0.08, 1)
@@ -82,6 +83,7 @@ tile_scenes = Dictionary[String, PackedScene]({
 "@": ExtResource("6_tipki"),
 "E": ExtResource("7_85g3d"),
 "G": ExtResource("9_eb6dy"),
+"M": ExtResource("12_a8y0u"),
 "T": ExtResource("6_85g3d")
 })
 unknown_tile_scene = ExtResource("6_choun")

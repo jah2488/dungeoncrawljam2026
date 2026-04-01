@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://brftx2i4d3d1a"]
+
+[ext_resource type="Script" uid="uid://bx02r12w0pnmu" path="res://scripts/entities/merchant_tile.gd" id="1_3nhdt"]
+[ext_resource type="Texture2D" uid="uid://c1b2dya475arp" path="res://textures/rat_merchant.png" id="1_nhiqj"]
+
+[node name="MerchantTile" type="Node3D" unique_id=732937878]
+script = ExtResource("1_3nhdt")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1587147210]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+billboard = 1
+texture = ExtResource("1_nhiqj")
