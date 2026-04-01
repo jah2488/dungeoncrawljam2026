@@ -6,10 +6,10 @@ uid="uid://bsfjfxxsxvkoc"
 
 [deps]
 
-files=["res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation"]
+files=["res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation"]
 
 source_file="res://levels/level_01.csv"
-dest_files=["res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation"]
+dest_files=["res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation", "res://levels/level_01.1.translation"]
 
 [params]
 

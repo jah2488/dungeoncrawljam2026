@@ -35,6 +35,7 @@ DamageNumbers="*res://scripts/globals/DamageNumbers.gd"
 DebugDraw="*res://scripts/globals/DebugDraw.gd"
 Particles="*res://scripts/globals/Particles.gd"
 Dialog="*res://scripts/globals/Dialog.gd"
+Groups="*uid://bj6jy64btl2sp"
 
 [debug]
 

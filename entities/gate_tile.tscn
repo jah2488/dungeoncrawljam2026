@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dlylan4bdyb3"]
+
+[ext_resource type="Script" uid="uid://dqmog0j0kxhmw" path="res://scripts/entities/gate_tile.gd" id="1_0pedm"]
+[ext_resource type="Texture2D" uid="uid://j5weyu7ww7xq" path="res://textures/gate.png" id="1_j7k7x"]
+
+[node name="GateTile" type="Node3D" unique_id=107233875]
+script = ExtResource("1_0pedm")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1868658366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+pixel_size = 0.2
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_j7k7x")
