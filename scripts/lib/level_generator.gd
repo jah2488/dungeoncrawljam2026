@@ -257,6 +257,7 @@ func _place_tiles() -> void:
 
             add_child(instance)
 
+
 func _add_to_group(key, instance):
     # Prevents issues when regenerating in the editor vs at game run
     if not Engine.is_editor_hint():
@@ -266,7 +267,11 @@ func _add_to_group(key, instance):
 
 func _tile_rotation(key):
     match key:
-        "L": return -PI / 2
-        "R": return PI / 2
-        "U": return PI
-        "D": return 0.0
+        "L":
+            return -PI / 2
+        "R":
+            return PI / 2
+        "U":
+            return PI
+        "D":
+            return 0.0
