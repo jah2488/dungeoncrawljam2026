@@ -8,6 +8,7 @@ extends Node3D
 @export var wall_thickness: float = 0.1
 @export var wall_character: String = "1"
 @export var wall_lever_character: String = "2"
+@export var mouse_hole_character: String = "D"
 @export var ground_character: String = "0"
 
 @export_group("Wall Material")
@@ -89,7 +90,7 @@ func _get_cell(row: int, col: int) -> String:
 
 
 func _is_wall(row: int, col: int) -> bool:
-    return _get_cell(row, col) == wall_character or _get_cell(row, col).split(":")[0] == wall_lever_character
+    return _get_cell(row, col) == wall_character or _get_cell(row, col).split(":")[0] == wall_lever_character or _get_cell(row, col).split(":")[0] == mouse_hole_character
 
 
 func _cell_position(row: int, col: int) -> Vector3:
@@ -250,7 +251,7 @@ func _place_tiles() -> void:
             var pos := _cell_position(row, col)
             instance.position = Vector3(pos.x, 0.0, pos.z)
 
-            if val_arr.size() >= 2:
+            if val_arr.size() >= 2 and val_arr[1] != "_":
                 _add_to_group(val_arr[1], instance)
             if val_arr.size() >= 3:
                 instance.rotation.y = _tile_rotation(val_arr[2])
