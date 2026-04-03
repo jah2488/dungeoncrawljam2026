@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d4dk5kvbkhjb2"]
+
+[ext_resource type="Script" uid="uid://b5erot33vpi02" path="res://scripts/entities/spawn_tile.gd" id="1_yq2uy"]
+
+[node name="SpawnTile" type="Node3D" unique_id=431253492]
+script = ExtResource("1_yq2uy")

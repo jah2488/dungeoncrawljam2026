@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c8ubs27hihx60" path="res://entities/text_tile.tscn" id="6_85g3d"]
 [ext_resource type="Texture2D" uid="uid://drevb8pf03g0g" path="res://textures/floor-normal.png" id="6_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://rp01p22xyd63" path="res://entities/unknown-tile.tscn" id="6_choun"]
-[ext_resource type="PackedScene" uid="uid://cq5rpnpyyqw87" path="res://entities/player.tscn" id="6_tipki"]
 [ext_resource type="PackedScene" uid="uid://bwxq55v4f0d6o" path="res://entities/enemy_tile.tscn" id="7_85g3d"]
 [ext_resource type="AudioStream" uid="uid://fxul7gablm1y" path="res://audio/music/RatDungeon.wav" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://c1xr25buqn4te" path="res://entities/trap_tile.tscn" id="8_choun"]
@@ -18,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://kasdbx4el2sd" path="res://entities/cheese_tile.tscn" id="11_trceg"]
 [ext_resource type="PackedScene" uid="uid://brftx2i4d3d1a" path="res://entities/merchant_tile.tscn" id="12_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://c61sl5r1rv1hp" path="res://entities/mouse_hole_tile.tscn" id="15_dp3eg"]
+[ext_resource type="PackedScene" uid="uid://d4dk5kvbkhjb2" path="res://entities/spawn_tile.tscn" id="15_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://bxbejk2orp35p" path="res://textures/blue_walls.png" id="17_0ld40"]
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
 sky_top_color = Color(0.05, 0.05, 0.08, 1)
@@ -86,8 +87,7 @@ environment = SubResource("env")
 
 [node name="LevelGenerator" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/World" unique_id=1155802989]
 script = ExtResource("5_choun")
-csv_file = "uid://bsfjfxxsxvkoc"
-mouse_hole_character = null
+csv_file = "uid://costij4f2qtgn"
 wall_texture = ExtResource("2_jyhfs")
 wall_normal_texture = ExtResource("3_tefeu")
 wall_uv_scale = Vector3(4, 4, 4)
@@ -104,7 +104,37 @@ tile_scenes = Dictionary[String, PackedScene]({
 "2": ExtResource("10_trceg"),
 "3": ExtResource("11_trceg"),
 "5": ExtResource("7_85g3d"),
-"@": ExtResource("6_tipki"),
+"@": ExtResource("15_gqmmt"),
+"D": ExtResource("15_dp3eg"),
+"E": ExtResource("7_85g3d"),
+"G": ExtResource("9_eb6dy"),
+"M": ExtResource("12_a8y0u"),
+"T": ExtResource("6_85g3d")
+})
+unknown_tile_scene = ExtResource("6_choun")
+
+[node name="LevelGenerator2" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport/World" unique_id=1944040022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, -4, 0)
+script = ExtResource("5_choun")
+csv_file = "uid://b760vqulp0wjc"
+level = 2
+wall_texture = ExtResource("17_0ld40")
+wall_normal_texture = ExtResource("3_tefeu")
+wall_uv_scale = Vector3(4, 4, 4)
+floor_color = Color(0.8849165, 0.54521775, 0.69746333, 1)
+floor_texture = ExtResource("5_trceg")
+floor_normal_texture = ExtResource("6_a8y0u")
+floor_uv_scale = Vector3(100, 100, 100)
+ceiling_color = Color(0.94664735, 0.90548587, 0.95594937, 1)
+ceiling_texture = ExtResource("5_trceg")
+ceiling_normal_texture = ExtResource("6_a8y0u")
+ceiling_uv_scale = Vector3(500, 200, 400)
+tile_scenes = Dictionary[String, PackedScene]({
+"#": ExtResource("8_choun"),
+"2": ExtResource("10_trceg"),
+"3": ExtResource("11_trceg"),
+"5": ExtResource("7_85g3d"),
+"@": ExtResource("15_gqmmt"),
 "D": ExtResource("15_dp3eg"),
 "E": ExtResource("7_85g3d"),
 "G": ExtResource("9_eb6dy"),
@@ -115,7 +145,6 @@ unknown_tile_scene = ExtResource("6_choun")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MarginContainer/SubViewportContainer/SubViewport" unique_id=199795231]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 10, 10)
-visible = false
 light_color = Color(0.37162217, 0.3716222, 0.37162215, 1)
 light_energy = 0.504
 shadow_enabled = true
@@ -266,7 +295,6 @@ alignment = 1
 
 [node name="ActionButtons" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/Panel/VBoxContainer/ActionsContainer" unique_id=1984003235]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 alignment = 1
 

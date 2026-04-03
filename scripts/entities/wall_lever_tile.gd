@@ -44,7 +44,7 @@ func interact(choice_id: String = "") -> void:
                 status = Status.OFF
 
             if Groups.has_triggerable_items(group_id):
-                Groups.trigger_items_in_group(group_id)
+                Groups.trigger_items_in_group(group_id, self)
                 print("You push the lever... and hear something move")
             else:
                 print("You push the lever... nothing happens")
@@ -57,8 +57,6 @@ func interact(choice_id: String = "") -> void:
 
 func pick_sprite():
     if status == Status.OFF:
-        $SpriteOff.show()
-        $SpriteOn.hide()
+        $AnimatedSprite3D.play("off")
     elif status == Status.ON:
-        $SpriteOff.hide()
-        $SpriteOn.show()
+        $AnimatedSprite3D.play("on")

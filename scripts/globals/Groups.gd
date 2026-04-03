@@ -14,10 +14,11 @@ func get_items_from_group(group_id) -> Array:
     return group_pool[group_id]
 
 
-func trigger_items_in_group(group_id):
-    for item in group_pool[group_id]:
-        if item.is_triggerable:
-            item.trigger()
+func trigger_items_in_group(group_id, source):
+    if group_id:
+        for item in group_pool[group_id]:
+            if item != source and item.is_triggerable:
+                item.trigger()
 
 
 func has_triggerable_items(group_id) -> bool:

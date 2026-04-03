@@ -4,17 +4,31 @@
 [ext_resource type="Texture2D" uid="uid://c2jneelo3ibwj" path="res://textures/wall_lever_off.png" id="2_404sq"]
 [ext_resource type="Texture2D" uid="uid://crt673345hkf6" path="res://textures/wall_lever_on.png" id="3_u3v0i"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3v0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_404sq")
+}],
+"loop": false,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u3v0i")
+}],
+"loop": false,
+"name": &"on",
+"speed": 5.0
+}]
+
 [node name="WallLeverTile" type="Node3D" unique_id=465103814]
 script = ExtResource("1_vig8u")
 
-[node name="SpriteOff" type="Sprite3D" parent="." unique_id=2092884462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9000001, 2.1)
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1974046819]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 2.1)
 pixel_size = 0.1
 texture_filter = 0
-texture = ExtResource("2_404sq")
-
-[node name="SpriteOn" type="Sprite3D" parent="." unique_id=1234290166]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9000001, 2.1)
-pixel_size = 0.1
-texture_filter = 0
-texture = ExtResource("3_u3v0i")
+sprite_frames = SubResource("SpriteFrames_u3v0i")
+animation = &"off"
