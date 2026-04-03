@@ -11,6 +11,7 @@ func _ready() -> void:
     is_passable = false
     is_enemy = false
     is_triggerable = false
+    set_group_id()
 
 
 func on_focused() -> void:
@@ -34,6 +35,10 @@ func interact(choice_id: String = "") -> void:
     print(print_name + " (interaction) ", choice_id)
     match choice_id:
         "inspect":
-            print("It's a mouse hole... You feel a desire to go in...")
+            if group_id:
+                Groups.trigger_items_in_group(group_id, self)
+                print("It's a mouse hole... You feel a desire to go in...")
+            else:
+                print("This is your home. You must venture forth.")
         _:
             print("you cannot perform this action on a mouse hole")

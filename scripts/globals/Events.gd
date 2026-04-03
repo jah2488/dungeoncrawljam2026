@@ -27,6 +27,7 @@ signal PlayerInspected
 signal PlayerDisarmed
 signal PlayerAttacked
 signal PlayerDefended
+
 signal PlayerTakesDamage(amount: int, source: Interactable)
 signal PlayerTriggerTrap(amount: int, source: Interactable)
 signal PlayerHeals(amount: int, source: Interactable)

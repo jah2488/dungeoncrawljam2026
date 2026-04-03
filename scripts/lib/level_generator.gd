@@ -3,6 +3,7 @@ class_name LevelGenerator
 extends Node3D
 
 @export_file("*.csv") var csv_file: String = ""
+@export var level: int = 1
 @export var cell_size: float = 4.0
 @export var wall_height: float = 4.0
 @export var wall_thickness: float = 0.1

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://b760vqulp0wjc"
+
+[deps]
+
+files=["res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation"]
+
+source_file="res://levels/level_02.csv"
+dest_files=["res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation", "res://levels/level_02.1.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

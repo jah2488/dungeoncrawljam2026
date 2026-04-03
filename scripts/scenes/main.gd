@@ -4,6 +4,11 @@ var cheese = preload("res://resources/items/cheese.tres")
 var fire_scale = preload("res://resources/items/fire_scale.tres")
 var player_inventory: Array[Item] = [cheese, fire_scale]
 
+@onready var level_registry = [
+    "LevelGenerator",
+	"LevelGenerator2"
+]
+
 
 func _ready() -> void:
     Events.PlayerLocation.connect(
@@ -32,6 +37,11 @@ func _ready() -> void:
     for child in %InventoryContainer.get_children():
         child.pressed.connect(_on_inventory_button_pressed, CONNECT_APPEND_SOURCE_OBJECT)
     _update_inventory()
+    _spawn_player()
+
+
+func _spawn_player() -> void:
+    Groups.trigger_items_in_group("1.1", null)
 
 
 func _update_inventory() -> void:
